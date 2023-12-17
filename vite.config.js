@@ -1,15 +1,65 @@
 import { defineConfig } from 'vite'
 import handlebars from 'vite-plugin-handlebars';
+import { getProperty } from './src/handlebars-helpers';
 
 
 export default defineConfig({
   plugins: [handlebars({
-    partialDirectory: './partials',
+    helpers: {
+      getProperty
+    },
+    partialDirectory: './src/partials',
     context:{
         testName: {
             name: "User",
             number: "42"
         },
+        testUser: {
+          email: "dna@gmail.com",
+          login: "dna42",
+          first_name: "Douglas",
+          second_name: "Adams",
+          display_name: "Doug",
+          phone: "+42434445"
+        },
+        profileData: [
+          {
+            name: 'Почта',
+            type: 'email',
+            property: 'email',
+            rules: null
+          },
+          {
+            name: 'Логин',
+            type: 'text',
+            property: 'login',
+            rules: null
+          },
+          {
+            name: 'Имя',
+            type: 'text',
+            property: 'first_name',
+            rules: null
+          },
+          {
+            name: 'Фамилия',
+            type: 'text',
+            property: 'second_name',
+            rules: null
+          },
+          {
+            name: 'Имя в чате',
+            type: 'text',
+            property: 'display_name',
+            rules: null
+          },
+          {
+            name: 'Телефон',
+            type: 'tel',
+            property: 'phone',
+            rules: null
+          },
+        ]
     }
   })],
 }) 

@@ -1,0 +1,40 @@
+$blue: #3369F3;
+$black: #1E1E1E;
+
+@mixin submit-button{
+    border-radius: 8px;
+    background: $blue;
+    height: 37px;
+    flex-shrink: 0;
+    border: none;
+    color: #FFF;
+    margin-top: 159px;
+    padding: 0 0;
+}
+
+@mixin form-rules{
+    & div:last-of-type{
+        margin: 0 0;
+    }
+    * {
+        width: 280px;
+    }
+}
+
+@mixin form-alternative{
+    color: $blue;
+    font-family: Inter;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 11px;
+    margin-top: 14px;
+}
+
+@mixin regular-text{
+    font-family: Inter;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 13px;
+}

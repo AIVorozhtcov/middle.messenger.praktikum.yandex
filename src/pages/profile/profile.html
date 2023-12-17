@@ -1,0 +1,43 @@
+
+
+{{#> layouts/page}}
+    <link rel="stylesheet" href="\src\pages\profile\profile.scss" />
+
+    <div class="sidebar">
+        <a href="index.html" class="back-button">
+            <img src="\src\assets\back_button.svg" alt="Back button">
+        </a>
+    </div>
+
+    <div>
+        <div class="image-circle">
+            <img src="/src/assets/undefinedPhoto.jpg" alt="Profile photo">
+        </div>
+        <p class="photoName">{{testUser.chatName}}</p>
+
+        <div class="profile-lines">
+            {{#each profileData}}
+                <p class="profile-line">
+                    <span class="profile-left-text">{{this.name}}</span>
+                    <input type={{this.type}} name="{{this.property}}" class="profile-right-text" value="{{getProperty ../testUser this.property}}" readonly>
+                </p>            
+            {{/ each}}
+                
+        </div>
+        <div class="profile-lines editing-options">
+            <a href class="profile-line editing-option">
+                <span class="options-left-text">Изменить данные</span>
+            </a>
+            <a href class="profile-line editing-option">
+                <span class="options-left-text">Изменить пароль</span>
+            </a>
+            <a href class="profile-line editing-option">
+                <span class="exit-left-text">Выйти</span>
+            </a>
+
+            
+
+                
+        </div>
+    </div>
+{{/ layouts/page}}

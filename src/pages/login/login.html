@@ -1,0 +1,12 @@
+{{#> layouts/page}}
+    <link rel="stylesheet" href="\src\pages\login\login.scss" />
+    {{#> card/card card-title="Вход"}}
+        <form class="login-form">
+            {{> card-input/card-input input-id="0" input-name="login" input-title="Логин" input-type="text"}}
+            {{> card-input/card-input input-id="1" input-name="password" input-title="Пароль" input-type="password"}}
+            <button type="submit" class="login-submit-button">Авторизоваться</button>
+        </form>
+        <a href="\src\pages\signup\signup.html" class="no-account">Нет аккаунта?</a>
+    {{/ card/card}}
+
+{{/ layouts/page}}

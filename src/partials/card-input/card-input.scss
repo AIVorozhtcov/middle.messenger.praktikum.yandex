@@ -1,0 +1,28 @@
+@import "/src/styles/common.scss";
+
+.card-input-container {
+    margin-bottom: 16px; 
+    
+}
+
+.card-input-title {
+    color: #999;
+    @include regular-text;
+    font-size: 9px;
+    line-height: 9px;
+    margin-bottom: 8px; 
+    
+}
+
+.card-input-field {
+    width: 100%; 
+    box-sizing: border-box; 
+    border: none;
+    border-bottom: 1px solid $blue;
+    padding: 0 0 6px 0; 
+    outline: none; 
+    color: $black;
+    @include regular-text;
+
+    
+}

@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/AIVorozhtcov/middle.messenger.praktikum.yandex#readme",
   "dependencies": {
-    "lodash-es": "^4.17.21",
     "vite": "^5.0.9",
     "vite-plugin-handlebars": "^1.6.0"
   },
