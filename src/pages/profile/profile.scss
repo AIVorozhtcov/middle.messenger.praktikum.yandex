@@ -82,10 +82,13 @@
 
 .editing-options{
     margin-top:60 px;
+    
     *{
         text-decoration: none; 
         color: inherit; 
         cursor: pointer; 
+        background-color: transparent;
+        border: none;
     }
 }
 
