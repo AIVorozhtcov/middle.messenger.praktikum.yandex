@@ -1,5 +1,5 @@
 {{#> layouts/page}}
-    <link rel="stylesheet" href="\src\pages\signup\signup.scss" />
+    
     {{#> card/card card-title="Регистрация"}}
         <form class="signup-form">
             {{> card-input/card-input input-id="0" input-name="email" input-title="Почта" input-type="email"}}
@@ -11,7 +11,7 @@
             {{> card-input/card-input input-id="5" input-name="repeat_password" input-title="Пароль (еще раз)" input-type="password"}}
             <button type="submit" class="signup-submit-button">Зарегистрироваться</button>
         </form>
-        <a href="\src\pages\login\login.html" class="has-account">Войти</a>
+        <a href="/src/pages/login/login.html" class="has-account">Войти</a>
     {{/ card/card}}
 
 {{/ layouts/page}}

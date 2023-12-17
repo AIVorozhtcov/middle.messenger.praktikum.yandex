@@ -1,12 +1,7 @@
-@import "src/pages/profile/profile.scss";
-@import "src/pages/errors/errors.scss";
+@import "./src/pages/profile/profile.scss";
+@import "./src/pages/errors/errors.scss";
+@import "./src/pages/login/login.scss";
+@import "./src/pages/signup/signup.scss";
+@import "./src/partials/card/card.scss";
+@import "./src/partials/card-input/card-input.scss";
 
-$font-stack:    Helvetica, sans-serif;
-$primary-color: #8b08fe;
-
-
-.TitleText{
-    font: 12px $font-stack;
-    color: $primary-color;
-}
- 

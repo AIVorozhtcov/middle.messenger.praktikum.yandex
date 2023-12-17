@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import handlebars from 'vite-plugin-handlebars';
+import { resolve } from 'path';
 import { getProperty } from './src/handlebars-helpers';
 
 
@@ -62,4 +63,19 @@ export default defineConfig({
         ]
     }
   })],
+  build: {
+    rollupOptions: {
+        input: {
+            index: resolve(__dirname, 'index.html'),
+            login: resolve(__dirname, 'src/pages/login/login.html'),
+            signup: resolve(__dirname, 'src/pages/signup/signup.html'),            
+            profile: resolve(__dirname, 'src/pages/profile/profile.html'),
+            error404: resolve(__dirname, 'src/pages/errors/error404.html'),
+            error500: resolve(__dirname, 'src/pages/errors/error500.html'),
+        }
+    }
+},
+server: {
+  open: 'index.html',
+},
 }) 
