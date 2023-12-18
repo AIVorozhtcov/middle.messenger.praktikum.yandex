@@ -1,0 +1,37 @@
+@import "/src/styles/common.scss";
+
+.error{
+    margin-top: 280px;
+
+    color: $black;
+    text-align: center;
+    @include regular-text;
+    font-size: 40px;
+    line-height: 40px;
+}
+
+.error-message{
+    margin-top: 20px;
+
+    color: $black;
+    text-align: center;
+    @include regular-text;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.error-retreat{
+    margin-top: 69px;
+    color: $blue;
+    text-align: center;
+    @include regular-text;
+    font-size: 11px;
+    line-height: 11px;
+}
+
+.error-canvas{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

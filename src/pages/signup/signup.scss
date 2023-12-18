@@ -1,0 +1,14 @@
+@import "/src/styles/common.scss";
+
+.signup-submit-button{
+    @include submit-button;
+    margin-top: 62px;
+}
+
+.signup-form{
+    @include form-rules;
+}
+
+.has-account{
+    @include form-alternative;
+}

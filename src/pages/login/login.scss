@@ -1,0 +1,13 @@
+@import "/src/styles/common.scss";
+
+.login-submit-button{
+    @include submit-button;
+}
+
+.login-form{
+    @include form-rules;
+}
+
+.no-account{
+    @include form-alternative;
+}
