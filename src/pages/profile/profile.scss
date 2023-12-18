@@ -6,8 +6,8 @@
     left: 0;
     width: 64px;
     height: 100vh;
-    background: #FBFBFB;
-    border-right: 1px solid #EAEAEA;
+    background: $background-gray;
+    border-right: 1px solid $border-gray;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -61,7 +61,7 @@
 }
 
 .profile-lines .profile-line {
-    border-bottom: 1px solid #EAEAEA;
+    border-bottom: 1px solid $border-gray;
     padding: 10px 0;
     display: flex;
     justify-content: space-between;
@@ -96,7 +96,7 @@
     color: $blue;    
 }
 .exit-left-text{
-    color: #F00;
+    color: $text-red;
 }
 
 .profile-left-text {
@@ -107,7 +107,7 @@
 }
 
 .profile-right-text {
-    color: #999;
+    color: $gray;
     text-align: right;
     text-align: right;
     outline: none;

@@ -6,7 +6,7 @@
 }
 
 .card-input-title {
-    color: #999;
+    color: $gray;
     @include regular-text;
     font-size: 9px;
     line-height: 9px;
