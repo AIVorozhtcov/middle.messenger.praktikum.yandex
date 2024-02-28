@@ -1,4 +1,7 @@
 import EventBus from "../utils/eventBus";
+import {v4 as makeUUID} from 'uuid';
+
+import Handlebars from 'handlebars';
 
 class Block {
     static EVENTS = {
@@ -7,7 +10,8 @@ class Block {
       FLOW_CDU: "flow:component-did-update",
       FLOW_RENDER: "flow:render"
     };
-  
+
+  _template = '<div>{{props.text}}</div>';  
   _element = null;
   _meta = null;
   
@@ -17,12 +21,19 @@ class Block {
      *
      * @returns {void}
      */
-  constructor(tagName = "div", props = {}) {
+  constructor(tagName = "div", propsAndChildren = {}, template) {
     const eventBus = new EventBus();
+    
+    const { children, props } = this._getChildren(propsAndChildren);
+    this.children = children;
     this._meta = {
-      tagName,
-      props
-    };
+        tagName,
+        props
+      };
+
+    this._template = template;
+    this._id = makeUUID();
+    props._id = this._id;
   
     this.props = this._makePropsProxy(props);
   
@@ -43,6 +54,21 @@ class Block {
     const { tagName } = this._meta;
     this._element = this._createDocumentElement(tagName);
   }
+
+  _getChildren(propsAndChildren) {
+        const children = {};
+        const props = {};
+
+        Object.entries(propsAndChildren).forEach(([key, value]) => {
+    if (value instanceof Block) {
+                children[key] = value;
+    } else {
+                props[key] = value;
+            }
+    });
+
+        return { children, props };
+    }
   
   init() {
     this._createResources();
@@ -51,6 +77,9 @@ class Block {
   
   _componentDidMount() {
     this.componentDidMount();
+    Object.values(this.children).forEach(child => {
+        child.dispatchComponentDidMount();
+    });
   }
   
   // Может переопределять пользователь, необязательно трогать
@@ -88,19 +117,45 @@ class Block {
   get element() {
     return this._element;
   }
+
+  compile(template, props) {
+    const propsAndStubs = { ...props };
+
+    Object.entries(this.children).forEach(([key, child]) => {
+        propsAndStubs[key] = `<div data-id="${child._id}"></div>`
+    });
+
+    
+    const fragment = this._createDocumentElement('template');
+
+    fragment.innerHTML = Handlebars.compile(template)({props: propsAndStubs});  
+
+    Object.values(this.children).forEach(child => {
+        console.log(child.getContent());
+        console.log(child.getContent() instanceof Node);
+        const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
+        stub.replaceWith(child.getContent());
+    });
+
+    return fragment.content;
+}
   
   _render() {
     const block = this.render();
+
+    this._removeEvents();
     // Этот небезопасный метод для упрощения логики
     // Используйте шаблонизатор из npm или напишите свой безопасный
     // Нужно не в строку компилировать (или делать это правильно),
     // либо сразу в DOM-элементы возвращать из compile DOM-ноду
     //this.setProps({value1: "render value"});
-    this._element.innerHTML = block;
+    this._element.innerHTML = '';
+    this._element.appendChild(block);
+    this._addEvents();
   }
   
   // Может переопределять пользователь, необязательно трогать
-  render() {}
+  render() { return this.compile(this._template, this.props);}
   
   getContent() {
     return this.element;
@@ -137,7 +192,26 @@ class Block {
   
   _createDocumentElement(tagName) {
     // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
-    return document.createElement(tagName);
+
+    const element = document.createElement(tagName);
+    element.setAttribute('data-id', this._id);
+    return element;
+  }
+
+  _addEvents() {
+    const {events = {}} = this.props;
+
+    Object.keys(events).forEach(eventName => {
+      this._element.addEventListener(eventName, events[eventName]);
+    });
+  }
+
+  _removeEvents() {
+    const {events = {}} = this.props;
+
+    Object.keys(events).forEach(eventName => {
+      this._element.removeEventListener(eventName, events[eventName]);
+    });
   }
   
   show() {

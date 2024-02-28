@@ -1,10 +1,10 @@
 import Block from "../block/block";
-import ButtonTemplate from "./button.hbs?raw";
+import InputTemplate from "./input.hbs?raw";
 
-class Button extends Block {
+class Input extends Block {
     constructor(props) {
           // Создаём враппер дом-элемент button
-      super("button", props, ButtonTemplate);
+      super("div", props, InputTemplate);
     }
   
     /*render() {
@@ -12,4 +12,4 @@ class Button extends Block {
     }*/
 };
 
-export default Button;
+export default Input;
