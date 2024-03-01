@@ -88,7 +88,7 @@ class Block {
   }
   
   dispatchComponentDidMount() {
-    this._eventBus().emit(Block.EVENTS.FLOW_CDM);
+    this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
   
   _componentDidUpdate(oldProps, newProps) {
