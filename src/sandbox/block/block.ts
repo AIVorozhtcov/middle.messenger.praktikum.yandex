@@ -44,7 +44,7 @@ class Block {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  // Add explicit type annotations to parameters and return types for all methods
+  
 
   private _registerEvents(eventBus: EventBus): void {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
@@ -213,9 +213,9 @@ class Block {
 
     if (events){
         Object.keys(events).forEach(eventName => {
-            // Ensure the event name is treated as a key of the events object
+            
             const eventHandler = events[eventName];
-            // Add the event listener if the element exists and the handler is a function
+            
             if (this._element && typeof eventHandler === 'function') {
               this._element.addEventListener(eventName, eventHandler);
             }
