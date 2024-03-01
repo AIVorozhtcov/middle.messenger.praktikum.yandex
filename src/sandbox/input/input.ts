@@ -1,8 +1,8 @@
-import Block from "../block/block";
+import Block, {Props}  from "../block/block";
 import InputTemplate from "./input.hbs?raw";
 
 class Input extends Block {
-    constructor(props) {
+    constructor(props: Props) {
           // Создаём враппер дом-элемент button
       super("div", props, InputTemplate);
     }
