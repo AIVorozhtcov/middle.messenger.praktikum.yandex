@@ -1,3 +1,12 @@
 {
-    "extends": "airbnb"    
-} 
+    "extends": "airbnb",
+    "rules": {
+        "import/no-extraneous-dependencies": ["error", {
+            "devDependencies": [
+                "**/vite.config.js",
+                "**/*.config.js"
+            ],
+            "optionalDependencies": false
+        }]
+    }
+}

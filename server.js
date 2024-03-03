@@ -1,10 +1,10 @@
-import express from 'express'
+import express from 'express';
 
-const app = express()
-const PORT = 3000
+const app = express();
+const PORT = 3000;
 
-app.use(express.static('./dist'))
+app.use(express.static('./dist'));
 
 app.listen(PORT, () => {
-	console.log(`Server started at ${PORT}`)
-})
+  console.log(`Server started at ${PORT}`);
+});
