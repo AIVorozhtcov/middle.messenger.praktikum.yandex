@@ -1,9 +1,10 @@
-import EventBus from "../utils/eventBus";
+import EventBus from "../../utils/eventBus";
 import { v4 as makeUUID } from 'uuid';
 import Handlebars from 'handlebars';
 
 export type Props = Record<string | symbol, unknown>;
-export type Children = Record<string, Block>;
+export type Children = Record<string | symbol, Block>;
+export type Lists = Record<string | symbol, Array<Block>>;
 
 export type PropsWithChildren = {
     [K in string | symbol]: unknown | Block;
@@ -22,14 +23,16 @@ class Block {
   private _meta: { tagName: string; props: Props } | null;
   public children: Children;
   public props: Props;
+  public lists: Lists;
   private _id: string;
   private eventBus: EventBus;
 
-  constructor(tagName: string = "div", propsAndChildren: { [key: string]: any } = {}, template: string = '<div>{{props.text}}</div>') {
+  constructor(tagName: string = "div", propsAndChildren: { [key: string]: unknown } = {}, template: string = '<div>{{props.text}}</div>') {
     const eventBus = new EventBus();
     
-    const { children, props } = this._getChildren(propsAndChildren);
+    const { children, props, lists } = this._getChildren(propsAndChildren);
     this.children = children;
+    this.lists = lists;
     this._meta = { tagName, props };
 
     this._template = template;
@@ -60,20 +63,23 @@ class Block {
     }
   }
 
-  private _getChildren(propsAndChildren: { [key: string]: any }): { children: Children; props: Props } {
+  private _getChildren(propsAndChildren: { [key: string]: any }): { children: Children; props: Props, lists: Lists } {
     
         const children = {};
         const props = {};
+        const lists = {};
 
         Object.entries(propsAndChildren).forEach(([key, value]) => {
-    if (value instanceof Block) {
-                children[key] = value;
-    } else {
+    if (value instanceof Block ) {
+      children[key] = value;
+    } else if (value instanceof Array){
+      lists[key] = value;
+    } else{
                 props[key] = value;
             }
     });
 
-        return { children, props };
+        return { children, props, lists };
     
   }
 
@@ -97,13 +103,13 @@ class Block {
     this.eventBus.emit(Block.EVENTS.FLOW_CDM);
   }
 
-  private _componentDidUpdate(oldProps: Props, newProps: Props): void {
+  private _componentDidUpdate(oldProps: Props | Children, newProps: Props | Children): void {
     if (this.componentDidUpdate(oldProps, newProps)){
         this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
-  public componentDidUpdate(oldProps: Props, newProps: Props): boolean {
+  public componentDidUpdate(oldProps: Props | Children, newProps: Props | Children): boolean {
     if (oldProps == newProps){
         return false
     } else {
@@ -129,6 +135,10 @@ class Block {
     Object.entries(this.children).forEach(([key, child]) => {
         propsAndStubs[key] = `<div data-id="${child._id}"></div>`
     });
+    console.log(this.lists);
+    Object.entries(this.lists).forEach(([key, child]) => {
+      propsAndStubs[key] = `<div data-id="list__${key}"></div>`
+  });
 
     
     const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
@@ -136,15 +146,39 @@ class Block {
     fragment.innerHTML = Handlebars.compile(template)({props: propsAndStubs});  
 
     Object.values(this.children).forEach(child => {
-        console.log(child.getContent());
-        console.log(child.getContent() instanceof Node);
+        
         const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
+        
         const content = child.getContent(); 
         if (stub && content) { 
             stub.replaceWith(content);
         }
     });
-
+    
+    Object.entries(this.lists).forEach(([key, list]) => {
+      
+      
+      const stub = fragment.content.querySelector(`[data-id="list__${key}"]`);
+      
+      if (!stub) {
+        return
+      };
+      const listContent = document.createElement('template');
+      console.log(listContent);
+      list.forEach(child => {
+        if (child instanceof Block){
+          const content = child.getContent();
+          if (content){            
+            listContent.content.append(content);
+            console.log(content);
+          }
+        } else{
+          listContent.content.append(`${child}`);
+        }
+      })
+      
+      stub.replaceWith(listContent.content);
+  });
     return fragment.content;
   }
 
@@ -162,6 +196,7 @@ class Block {
         this._element.appendChild(block);
     }    
     this._addEvents();
+    this._addAttributes();
   }
 
   public render(): DocumentFragment {
@@ -169,8 +204,8 @@ class Block {
     return this.compile(this._template, this.props);
   }
 
-  public getContent(): HTMLElement | null {
-    return this.element;
+  public getContent() {
+    return this._element;
   }
 
   private _makePropsProxy(props: Props): Props {
@@ -183,10 +218,19 @@ class Block {
               },
         
         set: function (target, prop, value) {
-          const oldProps = { ...target };
-          target[prop] = value;
-          self.eventBus.emit(Block.EVENTS.FLOW_CDU, oldProps, target);
-          return true;
+          if (value instanceof Block){
+            console.log(self.children);
+            const oldChildren = { ...this.children};
+            self.children[prop] = value;
+            self.eventBus.emit(Block.EVENTS.FLOW_CDU, oldChildren, self.children);
+            return true;
+          } else {
+            const oldProps = { ...target };
+            target[prop] = value;
+            self.eventBus.emit(Block.EVENTS.FLOW_CDU, oldProps, target);
+            return true;
+          }
+          
         },
         deleteProperty: function (target, prop) {
           throw new Error(`Нет прав`);
@@ -248,6 +292,24 @@ class Block {
         this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
     }
     
+  }
+
+  private _addAttributes(): void {
+    
+    const {attrs = {}} = this.props;
+    if (attrs){
+      Object.keys(attrs as Record<string | symbol, unknown>).forEach(attr => {
+        this._element?.setAttribute(attr, attrs[attr]);
+      });
+  }
+    
+  }
+
+  public mountElement(query: string){
+    const content = this.getContent();
+    if (content){
+        document.querySelector(query)?.appendChild(content);
+    }
   }
 }
 

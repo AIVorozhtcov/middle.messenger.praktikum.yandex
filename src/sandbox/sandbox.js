@@ -1,12 +1,12 @@
-import EventBus from "./utils/eventBus"; 
+import EventBus from "../utils/eventBus"; 
 
-import Block from "./block/block";
+import Block from "../components/block/block";
 
-import Button from "./button/button";
+import Button from "../components/button/button";
 
-import Input from "./input/input";
+import InputBlock from "../components/inputBlock/inputBlock";
 
-import MixedComponent from "./mixedComponent/mixedComponent";
+import MixedComponent from "../components/mixedComponent/mixedComponent";
 
 const eventBus = new EventBus();
 
@@ -40,6 +40,14 @@ function sendTest() {
     console.log('Test completed');
 };
 
+//classButton.setAttribute("class",'green-class');
+classButton.setProps({
+    attrs:{
+        value: "123",
+        class: "green-class"
+    }
+});
+
 
 eventBus.on("test", sendTest);
 
@@ -65,7 +73,7 @@ testButton.addEventListener("click", ()=> {
 document.body.appendChild(testButton);
 
 
-const classInput = new Input({
+const classInput = new InputBlock({
     inputId: 1,
     inputTitle: "Ввод",
     inputType: "date",
@@ -76,11 +84,9 @@ const firstButton = new Button({text: "Новая кнопка"});
 
 const mixedComponent = new MixedComponent({
     text: "Смешанный компонент",
-    button1: firstButton,
-    button2: classButton,
+    button1: [firstButton, classButton],
     input: classInput
 });
 
-testRender("main", mixedComponent);
 
-testRender("main", classButton);
+testRender("main", mixedComponent);
