@@ -3,7 +3,6 @@ import InputBlockTemplate from "./inputBlock.hbs?raw";
 
 class InputBlock extends Block {
     constructor(props: Props) {
-          // Создаём враппер дом-элемент button
       super("div", props, InputBlockTemplate);
       
       
@@ -11,9 +10,6 @@ class InputBlock extends Block {
 
     
   
-    /*render() {
-    
-    }*/
 };
 
 export default InputBlock;

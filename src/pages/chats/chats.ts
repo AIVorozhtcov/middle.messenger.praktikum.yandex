@@ -7,16 +7,12 @@ import MessageForm from "../../components/messageForm/messageForm";
 
 class Chats extends Block {
     constructor(props: Props) {
-          // Создаём враппер дом-элемент button
       super("div", props, ChatsTemplate);
       this.setProps({attrs:{
         class: "error-canvas"
       }});
     }
   
-    /*render() {
-    
-    }*/
 };
 
 const messageInputForm = new MessageForm({})

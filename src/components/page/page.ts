@@ -9,9 +9,6 @@ class Page extends Block {
         super("main", props, PageTemplate);
     }
   
-    /*render() {
-    
-    }*/
 };
 
 export default Page;

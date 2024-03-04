@@ -4,16 +4,12 @@ import Page from "../../components/page/page";
 
 class Error500 extends Block {
     constructor(props: Props) {
-          // Создаём враппер дом-элемент button
+          
       super("div", props, Error500Template);
       this.setProps({attrs:{
         class: "error-canvas"
       }});
-    }
-  
-    /*render() {
-    
-    }*/
+    }  
 };
 
 const error500Layout = new Error500({});

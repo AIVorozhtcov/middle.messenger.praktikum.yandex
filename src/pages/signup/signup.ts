@@ -7,22 +7,12 @@ import SignupTemplate from "./signup.hbs?raw";
 
 class Signup extends Block{
     constructor(props: Props) {
-        // Создаём враппер дом-элемент button
     super("div", props, SignupTemplate);
     this.setProps({attrs:{
         class: "card-canvas"
       }});
   }
 };
-/*
-{> card-input/card-input input-id="0" input-name="email" input-title="Почта" input-type="email"}}
-            {{> card-input/card-input input-id="1" input-name="login" input-title="Логин" input-type="text"}}
-            {{> card-input/card-input input-id="2" input-name="first_name" input-title="Имя" input-type="text"}}
-            {{> card-input/card-input input-id="3" input-name="second_name" input-title="Фамилия" input-type="text"}}
-            {{> card-input/card-input input-id="4" input-name="phone" input-title="Телефон" input-type="tel"}}
-            {{> card-input/card-input input-id="5" input-name="password" input-title="Пароль" input-type="password"}}
-            {{> card-input/card-input input-id="5" input-name="repeat_password" input-title="Пароль (еще раз)" input-type="password"}}
-*/
 
 const EmailInput = new CardInputBlock({
     inputChild: new Input({

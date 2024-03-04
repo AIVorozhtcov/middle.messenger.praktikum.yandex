@@ -5,7 +5,6 @@ import validateInput, { ValidationRule } from "../../utils/validation";
 
 class Card extends Block {
     constructor(props: Props) {
-          // Создаём враппер дом-элемент button
         super("div", props, CardTemplate);
         this.setProps({attrs:{
             class: "card-container"
@@ -37,9 +36,6 @@ class Card extends Block {
     
 
   
-    /*render() {
-    
-    }*/
 };
 
 export default Card;
