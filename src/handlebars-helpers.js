@@ -1,3 +1,2 @@
-export const getProperty = (object, property) => {
-    return object[property];
-  };
+const getProperty = (object, property) => object[property];
+export default getProperty;

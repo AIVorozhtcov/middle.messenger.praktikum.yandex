@@ -1,46 +1,13 @@
-
-
-{{#> layouts/page}}
+<!doctype html>
+<!-- <!doctype html> -->
+<head>
     
+    <meta charset="UTF-8">
+    <script type="module" src="./profile.ts"></script>
+    <link rel="stylesheet" href="/src/styles/styles.scss" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
-    <div class="sidebar">
-        
-        <button class="back-button" onclick="location.href='/index.html'">
-            <img src="/src/assets/back_button.svg" alt="Back button">
-        </button>
-    </div>
+</head>
+<body>
 
-    <div>
-        <div class="image-circle">
-            <img src="/src/assets/undefinedPhoto.jpg" alt="Profile photo">
-        </div>
-        <p class="photoName">{{testUser.chatName}}</p>
-
-        <div class="profile-lines">
-            {{#each profileData}}
-                <p class="profile-line">
-                    <span class="profile-left-text">{{this.name}}</span>
-                    <input type={{this.type}} name="{{this.property}}" class="profile-right-text" value="{{getProperty ../testUser this.property}}" readonly>
-                </p>            
-            {{/ each}}
-                
-        </div>
-        <div class="profile-lines editing-options">
-            
-            <button class="profile-line editing-option">
-                <span class="options-left-text">Изменить данные</span>
-            </button>
-            <button class="profile-line editing-option">
-                <span class="options-left-text">Изменить пароль</span>
-            </button>
-            <button class="profile-line editing-option">
-                <span class="exit-left-text">Выйти</span>
-            </button>
-
-
-            
-
-                
-        </div>
-    </div>
-{{/ layouts/page}}
+</body>
