@@ -67,7 +67,7 @@ const SidebarButton = new Button({
         class: "back-button",
     },
     events: {
-        click: event => {
+        click: _event => {
             location.href='/index.html'
         }
     },    

@@ -10,7 +10,7 @@ class Card extends Block {
         this.setProps({attrs:{
             class: "card-container"
         }});
-        document.addEventListener('DOMContentLoaded', (event) => {
+        document.addEventListener('DOMContentLoaded', (_event) => {
             const formElement = this.element?.querySelector("form");
             formElement?.addEventListener('submit', (event: Event) => {
                 event.preventDefault(); 

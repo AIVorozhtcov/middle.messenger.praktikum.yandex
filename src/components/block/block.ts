@@ -100,7 +100,7 @@ class Block {
     });
   }
 
-  public componentDidMount(oldProps?: Props): void {
+  public componentDidMount(_oldProps?: Props): void {
     
   }
 
@@ -141,7 +141,7 @@ class Block {
         propsAndStubs[key] = `<div data-id="${child._id}"></div>`
     });
     
-    Object.entries(this.lists).forEach(([key, child]) => {
+    Object.entries(this.lists).forEach(([key, _child]) => {
       propsAndStubs[key] = `<div data-id="list__${key}"></div>`
   });
 
@@ -235,7 +235,7 @@ class Block {
           }
           
         },
-        deleteProperty: function (target, prop) {
+        deleteProperty: function (_target, _prop) {
           throw new Error(`Нет прав`);
         },
   

@@ -9,10 +9,10 @@ class Input extends Block {
 
       this.setProps({        
         events:{
-            blur: (event: Event) => {
+            blur: (_event: Event) => {
                 const inputElement = this.element as HTMLInputElement;
                 if (!inputElement) return; 
-                const isValid = validateInput(inputElement.name as ValidationRule, inputElement.value);
+                validateInput(inputElement.name as ValidationRule, inputElement.value);
                 
             }
         }

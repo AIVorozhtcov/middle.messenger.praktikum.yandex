@@ -8,7 +8,7 @@ class MessageForm extends Block {
           // Создаём враппер дом-элемент button
         super("div", props, MessageFormTemplate);
         
-        document.addEventListener('DOMContentLoaded', (event) => {
+        document.addEventListener('DOMContentLoaded', (_event) => {
             const formElement = this.element?.querySelector("form");
             const messageInput = this.element?.querySelector("input");
             console.log(formElement);
