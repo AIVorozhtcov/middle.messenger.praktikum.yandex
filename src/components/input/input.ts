@@ -4,7 +4,6 @@ import validateInput, {ValidationRule} from "../../utils/validation";
 
 class Input extends Block {
     constructor(props: Props) {
-          // Создаём враппер дом-элемент button
       super("input", props, InputTemplate);
 
       this.setProps({        
@@ -19,9 +18,6 @@ class Input extends Block {
       })
     }
   
-    /*render() {
-    
-    }*/
 };
 
 export default Input;

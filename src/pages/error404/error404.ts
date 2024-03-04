@@ -4,16 +4,13 @@ import Page from "../../components/page/page";
 
 class Error404 extends Block {
     constructor(props: Props) {
-          // Создаём враппер дом-элемент button
+          
       super("div", props, Error404Template);
       this.setProps({attrs:{
         class: "error-canvas"
       }});
     }
   
-    /*render() {
-    
-    }*/
 };
 
 const error404Layout = new Error404({});

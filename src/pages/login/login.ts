@@ -7,7 +7,6 @@ import Input from "../../components/input/input";
 
 class Login extends Block{
     constructor(props: Props) {
-        // Создаём враппер дом-элемент button
     super("div", props, LoginTemplate);
     this.setProps({attrs:{
         class: "card-canvas"

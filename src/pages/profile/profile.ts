@@ -8,7 +8,6 @@ import ProfileTemplate from "./profile.hbs?raw";
 
 class Profile extends Block{
     constructor(props: Props) {
-        // Создаём враппер дом-элемент button
     super("div", props, ProfileTemplate);
     
   }
