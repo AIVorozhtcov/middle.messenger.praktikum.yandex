@@ -11,8 +11,7 @@ class Card extends Block {
             class: "card-container"
         }});
         document.addEventListener('DOMContentLoaded', (event) => {
-            const formElement = document.querySelector("form");
-            console.log(formElement);
+            const formElement = this.element?.querySelector("form");
             formElement?.addEventListener('submit', (event: Event) => {
                 event.preventDefault(); 
                 let formObject: Record<string, string> = {};

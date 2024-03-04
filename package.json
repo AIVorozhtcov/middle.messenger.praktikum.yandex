@@ -9,9 +9,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "lint": "eslint .",
+    "build": "eslint . &&tsc && vite build",
     "preview": "vite preview",
-    "start": "vite build && node ./server.js"
+    "start": "tsc && vite build &&  node ./server.js"
   },
   "repository": {
     "type": "git",
