@@ -1,6 +1,10 @@
 
 {
     "compilerOptions": {
+        "target": "ESNext",
+        "module": "ESNext",
+        "lib": ["ESNext", "DOM", "es6"],        
+        "moduleResolution": "Node",
         "noImplicitAny": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
@@ -9,5 +13,6 @@
         "esModuleInterop": true,        
         "noEmit": true,
     },
-    "include": ["src", "./custom.d.ts"]
+    "include": ["src", "./custom.d.ts"],
+    "exclude": ["node_modules", "build", "static"]
 }
