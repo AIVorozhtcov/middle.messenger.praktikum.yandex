@@ -3,6 +3,7 @@ import Page from "../../components/page/page";
 import Card from "../../components/card/card";
 import CardInputBlock from "../../components/cardInputBlock/cardInputBlock";
 import LoginTemplate from "./login.hbs?raw";
+import Input from "../../components/input/input";
 
 class Login extends Block{
     constructor(props: Props) {
@@ -16,18 +17,27 @@ class Login extends Block{
 
 
 const LoginInput = new CardInputBlock({
-    inputId: 0,
+    inputChild: new Input({
+        attrs:{                
+            id: 0,
+            type: "text",
+            name: "login",  
+        },      
+    }),
     inputTitle: "Логин",
-    inputType: "text",
-    inputName: "login",
 });
 
 
+
 const PasswordInput = new CardInputBlock({
-    inputId: 1,
+    inputChild: new Input({
+        attrs:{                
+            id: 1,
+            type: "password",
+            name: "password",  
+        },      
+    }),
     inputTitle: "Пароль",
-    inputType: "password",
-    inputName: "password",
 });
 
 const LoginCard = new Card({

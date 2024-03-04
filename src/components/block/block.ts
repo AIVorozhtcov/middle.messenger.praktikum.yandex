@@ -2,9 +2,14 @@ import EventBus from "../../utils/eventBus";
 import { v4 as makeUUID } from 'uuid';
 import Handlebars from 'handlebars';
 
-export type Props = Record<string | symbol, unknown>;
+
 export type Children = Record<string | symbol, Block>;
 export type Lists = Record<string | symbol, Array<Block>>;
+type EventHandlers = (evt: Event) => void;
+export type Events = Record<string, EventHandlers>;
+export type Attributes = Record<string | symbol, unknown>;
+export type Props = Record<string | symbol, unknown> & { events?: Events }  & { attrs?: Attributes };
+
 
 export type PropsWithChildren = {
     [K in string | symbol]: unknown | Block;
@@ -65,9 +70,9 @@ class Block {
 
   private _getChildren(propsAndChildren: { [key: string]: any }): { children: Children; props: Props, lists: Lists } {
     
-        const children = {};
-        const props = {};
-        const lists = {};
+        const children: Children = {};
+        const props: Props = {};
+        const lists: Lists = {};
 
         Object.entries(propsAndChildren).forEach(([key, value]) => {
     if (value instanceof Block ) {
@@ -135,7 +140,7 @@ class Block {
     Object.entries(this.children).forEach(([key, child]) => {
         propsAndStubs[key] = `<div data-id="${child._id}"></div>`
     });
-    console.log(this.lists);
+    
     Object.entries(this.lists).forEach(([key, child]) => {
       propsAndStubs[key] = `<div data-id="list__${key}"></div>`
   });
@@ -164,13 +169,12 @@ class Block {
         return
       };
       const listContent = document.createElement('template');
-      console.log(listContent);
+      
       list.forEach(child => {
         if (child instanceof Block){
           const content = child.getContent();
           if (content){            
             listContent.content.append(content);
-            console.log(content);
           }
         } else{
           listContent.content.append(`${child}`);
@@ -219,8 +223,7 @@ class Block {
         
         set: function (target, prop, value) {
           if (value instanceof Block){
-            console.log(self.children);
-            const oldChildren = { ...this.children};
+            const oldChildren = { ...self.children};
             self.children[prop] = value;
             self.eventBus.emit(Block.EVENTS.FLOW_CDU, oldChildren, self.children);
             return true;
@@ -269,7 +272,7 @@ class Block {
   }
 
   private _removeEvents(): void {
-    const {events = {}} = this.props;
+    const {events} = this.props;
     if (events){
         Object.keys(events as Record<string | symbol, unknown>).forEach(eventName => {
             this._element?.removeEventListener(eventName, events[eventName]);
@@ -299,7 +302,8 @@ class Block {
     const {attrs = {}} = this.props;
     if (attrs){
       Object.keys(attrs as Record<string | symbol, unknown>).forEach(attr => {
-        this._element?.setAttribute(attr, attrs[attr]);
+        const attributeValue = attrs[attr] as string;
+        this._element?.setAttribute(attr, attributeValue);
       });
   }
     

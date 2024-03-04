@@ -2,6 +2,7 @@ import Block, {Props} from "../../components/block/block";
 import Page from "../../components/page/page";
 import Card from "../../components/card/card";
 import CardInputBlock from "../../components/cardInputBlock/cardInputBlock";
+import Input from "../../components/input/input";
 import SignupTemplate from "./signup.hbs?raw";
 
 class Signup extends Block{
@@ -24,53 +25,83 @@ class Signup extends Block{
 */
 
 const EmailInput = new CardInputBlock({
-    inputId: 0,
-    inputTitle: "Почта",
-    inputType: "email",
-    inputName: "email",
+    inputChild: new Input({
+        attrs:{                
+            id: 0,
+            type: "email",
+            name: "email",
+        },        
+    }),    
+    inputTitle: "Почта"
 });
 
 const LoginInput = new CardInputBlock({
-    inputId: 1,
+    inputChild: new Input({
+        attrs:{                
+            id: 1,
+            type: "text",
+            name: "login",  
+        },      
+    }),
     inputTitle: "Логин",
-    inputType: "text",
-    inputName: "login",
 });
 
 const FirstNameInput = new CardInputBlock({
-    inputId: 2,
+    inputChild: new Input({
+        attrs:{
+            id: 2,
+            type: "text",
+            name: "first_name",  
+        },              
+    }),
     inputTitle: "Имя",
-    inputType: "text",
-    inputName: "first_name",
 });
 
 
 const SecondNameInput = new CardInputBlock({
-    inputId: 3,
+    inputChild: new Input({
+        attrs:{            
+            id: 3,
+            type: "text",
+            name: "second_name",  
+        }      
+    }),
     inputTitle: "Фамилия",
-    inputType: "text",
-    inputName: "second_name",
 });
 
 const PhoneInput = new CardInputBlock({
-    inputId: 4,
+    inputChild: new Input({
+        attrs:{
+            id: 4,
+            type: "tel",
+            name: "phone", 
+        },
+               
+    }),
     inputTitle: "Телефон",
-    inputType: "tel",
-    inputName: "phone",
 });
 
 const PasswordInput = new CardInputBlock({
-    inputId: 5,
+    inputChild: new Input({
+        attrs:{
+            id: 5,
+            name: "password",        
+            type: "password",
+        },
+        
+    }),
     inputTitle: "Пароль",
-    inputType: "password",
-    inputName: "password",
 });
 
 const RepeatPasswordInput = new CardInputBlock({
-    inputId: 6,
+    inputChild: new Input({
+        attrs:{
+            id: 6,
+            type: "password",
+            name: "repeat_password",    
+        }            
+    }),
     inputTitle: "Пароль (еще раз)",
-    inputType: "password",
-    inputName: "repeat_password",
 });
 
 const SignupCard = new Card({

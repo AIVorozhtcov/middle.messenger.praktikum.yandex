@@ -5,7 +5,11 @@ class InputBlock extends Block {
     constructor(props: Props) {
           // Создаём враппер дом-элемент button
       super("div", props, InputBlockTemplate);
+      
+      
     }
+
+    
   
     /*render() {
     
