@@ -9,7 +9,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "vite",
-    "lint": "eslint .",
+    "eslint": "eslint .",
     "build": "eslint . &&tsc && vite build",
     "preview": "vite preview",
     "start": "tsc && vite build &&  node ./server.js"
