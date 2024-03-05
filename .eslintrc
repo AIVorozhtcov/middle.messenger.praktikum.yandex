@@ -53,6 +53,7 @@
         "no-multi-spaces": "off",
         "prefer-const": "off",
         "prefer-template": "off",
-        "no-unsafe-optional-chaining": "off"
+        "no-unsafe-optional-chaining": "off",
+        "no-restricted-globals": "off"
     }
 }
