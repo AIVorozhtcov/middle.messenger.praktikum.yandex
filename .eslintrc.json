@@ -1,6 +1,6 @@
 {
-    "ignorePatterns": ["dist/**", "server.js", "vite.config.js", "*.config.js"],
-    "extends": "airbnb",
+    "ignorePatterns": ["dist/", "node_modules/", "server.js", "vite.config.js", "*.config.js"],
+    "extends": "airbnb/base",
     "parser": "@typescript-eslint/parser",
     "plugins": ["@typescript-eslint"],
     "parserOptions": {
