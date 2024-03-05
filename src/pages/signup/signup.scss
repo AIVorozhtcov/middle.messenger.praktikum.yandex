@@ -1,7 +1,8 @@
-@import "/src/styles/common.scss";
+@import "/src/styles/common";
 
 .signup-submit-button{
     @include submit-button;
+
     margin-top: 62px;
 }
 

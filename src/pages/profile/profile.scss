@@ -1,4 +1,4 @@
-@import "/src/styles/common.scss";
+@import "/src/styles/common";
 
 .sidebar{
     position: fixed;
@@ -36,19 +36,33 @@
 }
 
 .image-circle img {
-    
     width: 100%;
     height: auto;
 }
 
-.photoName{
-    margin: 21px 0 0 0;
+.photo-name{
+    margin: 21px 0 0;
     color: $black;
     text-align: center;
+
     @include regular-text;
+
     font-size: 16px;
     font-weight: 600;
     line-height: 16px; 
+}
+
+
+.editing-options{
+    margin-top:60 px;
+    
+    *{
+        text-decoration: none; 
+        color: inherit; 
+        cursor: pointer; 
+        background-color: transparent;
+        border: none;
+    }
 }
 
 .profile-lines {
@@ -66,35 +80,27 @@
     display: flex;
     justify-content: space-between;
     width: 510px;
-    margin: 0 0;
+    margin: 0;
     
     * {
         @include regular-text;
     }
+
     &:last-child {
-        padding: 10px 0 0 0;
+        padding: 10px 0 0;
         border-bottom: none;
     }
+
     &:first-child{
-        padding: 0 0 10px 0;
+        padding: 0 0 10px;
     }
 }
 
-.editing-options{
-    margin-top:60 px;
-    
-    *{
-        text-decoration: none; 
-        color: inherit; 
-        cursor: pointer; 
-        background-color: transparent;
-        border: none;
-    }
-}
 
 .options-left-text{
     color: $blue;    
 }
+
 .exit-left-text{
     color: $text-red;
 }
@@ -109,10 +115,9 @@
 .profile-right-text {
     color: $gray;
     text-align: right;
-    text-align: right;
     outline: none;
     cursor: default;
-    padding: 0 0;
+    padding: 0;
     border-width: 0;
 }
 
