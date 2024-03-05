@@ -41,6 +41,14 @@
         "keyword-spacing": "off",
         "no-shadow": "off",
         "@typescript-eslint/no-shadow": "off",
-        "object-curly-newline": "off"
+        "object-curly-newline": "off",
+        "object-curly-spacing": "off",
+        "comma-dangle": "off",
+        "no-extra-semi": "off",
+        "spaced-comment": "off",
+        "func-names": "off",
+        "object-shorthand": "off",
+        "space-infix-ops": "off",
+        "key-spacing": "off"
     }
 }
