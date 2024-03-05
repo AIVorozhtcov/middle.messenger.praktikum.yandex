@@ -7,13 +7,23 @@
         "project": "./tsconfig.json"
     },
     "rules": {
-        "import/no-extraneous-dependencies": ["error", {
-            "devDependencies": [
-                "**/vite.config.js",
-                "**/*.config.js",
-                "**/server.js"
-            ],
-            "optionalDependencies": false
-        }]
+        "max-len": [2, 100],
+        "@typescript-eslint/no-unused-vars": 2,
+        "no-console": 0,
+        "import/extensions": 0,
+        "quotes": 0,
+        "semi": 0,
+        "no-underscore-dangle": 0,
+        "no-tabs": 0,
+        "lines-between-class-members": 0,
+        "class-methods-use-this": 0,
+        "no-undef": 0,
+        "no-param-reassign": 0,
+        "import/prefer-default-export": 0,
+        "import/no-extraneous-dependencies": 0,
+        "import/no-unresolved": 0,
+        "arrow-body-style": 0,
+        "no-restricted-syntax": 0,
+        "no-use-before-define": 0
     }
 }
