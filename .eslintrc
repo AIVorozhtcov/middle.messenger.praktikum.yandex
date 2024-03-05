@@ -49,6 +49,10 @@
         "func-names": "off",
         "object-shorthand": "off",
         "space-infix-ops": "off",
-        "key-spacing": "off"
+        "key-spacing": "off",
+        "no-multi-spaces": "off",
+        "prefer-const": "off",
+        "prefer-template": "off",
+        "no-unsafe-optional-chaining": "off"
     }
 }
