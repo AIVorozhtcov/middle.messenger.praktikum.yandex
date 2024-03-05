@@ -11,7 +11,7 @@
         "sourceMap": true,
         "strictNullChecks": true,
         "esModuleInterop": true,        
-        "noEmit": true,
+        "noEmit": true
     },
     "include": ["src", "./custom.d.ts"],
     "exclude": ["node_modules", "build", "static"]
