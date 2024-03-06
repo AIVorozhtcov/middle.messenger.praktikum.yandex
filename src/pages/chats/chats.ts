@@ -3,7 +3,9 @@ import ChatsTemplate from "./chats.hbs?raw";
 import Page from "../../components/page/page";
 import Message from "../../components/message/message";
 import Chat from "../../components/chat/chat";
-import MessageForm from "../../components/messageForm/messageForm";
+import Form from "../../components/form/form";
+import Input from "../../components/input/input";
+import CardInputBlock from "../../components/cardInputBlock/cardInputBlock";
 
 class Chats extends Block {
     constructor(props: Props) {
@@ -15,7 +17,21 @@ class Chats extends Block {
   
 };
 
-const messageInputForm = new MessageForm({})
+const messageForm= new Form({
+    inputs: [new CardInputBlock({
+        inputChild: new Input({
+            attrs:{
+                type: "text",
+                id: "message",
+                name: "message",
+                placeholder: "Type your message here..."
+            }
+        }),
+        inputTitle: "",}),
+        ],
+    submitText: "Отправить",   
+    
+});
 
 const Chat1 = new Chat({
     chatName: "Chatster",
@@ -53,7 +69,7 @@ const Message3 = new Message({
 const chatsLayout = new Chats({
     sidebarChats: [Chat1, Chat2, Chat3, Chat4],
     messages: [Message1, Message2, Message3],
-    messageForm: messageInputForm
+    messageForm: messageForm
 });
 
 const chatsPage = new Page({pageLayout: chatsLayout});
