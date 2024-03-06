@@ -107,7 +107,7 @@ const SignupCard = new Card({
         submitText: "Зарегистрироваться",   
         attrs:{
             class: "signup-form"
-        } ,
+        }
     }),
     hrefAddress: "/src/pages/login/login.html",
     hrefText: "Войти"
