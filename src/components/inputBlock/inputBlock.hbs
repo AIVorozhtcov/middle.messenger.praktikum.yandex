@@ -1,0 +1,5 @@
+<label for="{{props.inputId}}" class="{{props.labelClass}}">{{props.inputTitle}}</label>
+{{{props.inputChild}}}
+{{#if props.validationFailed}}
+<div class="error-message">{{props.inputTitle}} не соответствует требованиям</div>
+{{/if}}
