@@ -5,6 +5,7 @@ import Img from "../../components/img/img";
 import Span from "../../components/span/span";
 import Button from "../../components/button/button";
 import ProfileTemplate from "./profile.hbs?raw";
+import Input from "../../components/input/input";
 
 class Profile extends Block{
     constructor(props: Props) {
@@ -14,45 +15,69 @@ class Profile extends Block{
 };
 
 const EmailLine = new ProfileLine({
+    inputChild: new Input({
+        attrs:{      
+            type: "email",
+            name: "email",              
+            value: "dna@gmail.com"
+        },      
+    }),
     title: "Почта",
-    type: "email",
-    name: "email",
-    value: "dna@gmail.com"
 })
 
 const LoginLine = new ProfileLine({
+    inputChild: new Input({
+        attrs:{      
+            type: "text",
+            name: "login",              
+            value: "dna42"
+        },      
+    }),
     title: "Логин",
-    type: "text",
-    name: "login",
-    value: "dna42"
 })
 
 const FirstNameLine = new ProfileLine({
-    title: "Имя",
-    type: "text",
-    name: "first_name",
-    value: "Douglas"
+    inputChild: new Input({
+        attrs:{      
+            type: "text",
+            name: "first_name",              
+            value: "Douglas"
+        },      
+    }),    
+    title: "Имя"
 })
 
 const LastNameLine = new ProfileLine({
-    title: "Фамилия",
-    type: "text",
-    name: "last_name",
-    value: "Adams"
+    inputChild: new Input({
+        attrs:{      
+            type: "text",
+            name: "last_name",              
+            value: "Adams"
+        },      
+    }),
+    title: "Фамилия"
 })
 
 const DisplayNameLine = new ProfileLine({
-    title: "Имя в чате",
-    type: "text",
-    name: "display_name",
-    value: "Doug"
+    inputChild: new Input({
+        attrs:{      
+            type: "text",
+            name: "display_name",              
+            value: "Doug"
+        },      
+    }),
+    title: "Имя в чате"
 })
 
 const PhoneLine = new ProfileLine({
-    title: "Телефон",
-    type: "tel",
-    name: "phone",
-    value: "+42434445"
+    inputChild: new Input({
+        attrs:{      
+            type: "tel",
+            name: "phone",              
+            value: "+42434445"
+        },      
+    }),    
+    title: "Телефон"
 })
 
 const SidebarButton = new Button({

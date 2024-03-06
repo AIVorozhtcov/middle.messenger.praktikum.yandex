@@ -11,3 +11,13 @@
 .no-account{
     @include form-alternative;
 }
+
+
+.error-message{
+    color: $error-red;
+    font-family: Inter, sans-serif;
+    font-size: 8px;
+    line-height: 8px;
+    text-align: start;
+    padding-top: 7px;
+}

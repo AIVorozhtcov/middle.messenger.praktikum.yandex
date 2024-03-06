@@ -4,6 +4,7 @@ $gray: #999;
 $box-shadow-black: rgb(0 0 0 / 14%);
 $border-gray: #EAEAEA;
 $text-red: #F00;
+$error-red: #FF2F2F;
 $background-gray: #FBFBFB;
 
 @mixin submit-button{
@@ -16,6 +17,7 @@ $background-gray: #FBFBFB;
     margin-top: 159px;
     padding: 0;
 }
+
 
 @mixin form-rules{
     & div:last-of-type{
@@ -44,3 +46,4 @@ $background-gray: #FBFBFB;
     font-weight: 500;
     line-height: 13px;
 }
+

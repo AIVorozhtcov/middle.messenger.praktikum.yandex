@@ -1,6 +1,5 @@
 import Block, {Props}  from "../block/block";
 import CardTemplate from "./card.hbs?raw";
-import validateInput, { ValidationRule } from "../../utils/validation";
 
 
 class Card extends Block {
@@ -9,27 +8,6 @@ class Card extends Block {
         this.setProps({attrs:{
             class: "card-container"
         }});
-        document.addEventListener('DOMContentLoaded', (_event) => {
-            const formElement = this.element?.querySelector("form");
-            formElement?.addEventListener('submit', (event: Event) => {
-                event.preventDefault(); 
-                let formObject: Record<string, string> = {};
-                const inputs = this.element?.querySelectorAll('input');
-                let isValidForm = true;
-                
-                inputs?.forEach(input => {
-                const isValid = validateInput(input.name as ValidationRule, input.value);
-                if (!isValid) {
-                    isValidForm = false;
-                }
-                formObject[input.name] = input.value;
-                });
-                
-                if (isValidForm) {
-                console.log(formObject)
-                }
-        });
-        });
         
     }
 

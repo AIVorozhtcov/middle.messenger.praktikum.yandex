@@ -4,6 +4,7 @@ import Card from "../../components/card/card";
 import CardInputBlock from "../../components/cardInputBlock/cardInputBlock";
 import LoginTemplate from "./login.hbs?raw";
 import Input from "../../components/input/input";
+import Form from "../../components/form/form";
 
 class Login extends Block{
     constructor(props: Props) {
@@ -28,6 +29,7 @@ const LoginInput = new CardInputBlock({
 
 
 
+
 const PasswordInput = new CardInputBlock({
     inputChild: new Input({
         attrs:{                
@@ -40,11 +42,15 @@ const PasswordInput = new CardInputBlock({
 });
 
 const LoginCard = new Card({
-    title:"Вход",
-    inputs: [LoginInput, PasswordInput],
-    submitClass: "login-submit-button",
-    submitText: "Авторизоваться",
-    formClass: "login-form",
+    form: new Form({
+        title:"Вход",
+        inputs: [LoginInput, PasswordInput],
+        submitClass: "login-submit-button",
+        submitText: "Авторизоваться",
+        attrs:{
+            class: "login-form",
+        }
+    }),
     hrefAddress: "/src/pages/signup/signup.html",
     hrefText: "Нет аккаунта?"
 });

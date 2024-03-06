@@ -4,6 +4,7 @@ import Card from "../../components/card/card";
 import CardInputBlock from "../../components/cardInputBlock/cardInputBlock";
 import Input from "../../components/input/input";
 import SignupTemplate from "./signup.hbs?raw";
+import Form from "../../components/form/form";
 
 class Signup extends Block{
     constructor(props: Props) {
@@ -94,12 +95,20 @@ const RepeatPasswordInput = new CardInputBlock({
     inputTitle: "Пароль (еще раз)",
 });
 
+
+
+
+
 const SignupCard = new Card({
-    title:"Регистрация",
-    inputs: [EmailInput, LoginInput, FirstNameInput, SecondNameInput, PhoneInput, PasswordInput, RepeatPasswordInput],
-    submitClass: "signup-submit-button",
-    submitText: "Зарегистрироваться",    
-    formClass: "signup-form",
+    form: new Form({
+        title:"Регистрация",
+        inputs: [EmailInput, LoginInput, FirstNameInput, SecondNameInput, PhoneInput, PasswordInput, RepeatPasswordInput],
+        submitClass: "signup-submit-button",
+        submitText: "Зарегистрироваться",   
+        attrs:{
+            class: "signup-form"
+        } ,
+    }),
     hrefAddress: "/src/pages/login/login.html",
     hrefText: "Войти"
 });
