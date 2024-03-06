@@ -53,6 +53,10 @@
 }
 
 
+.error-mode * {
+    color: $error-red;
+}
+
 .editing-options{
     margin-top:60 px;
     
@@ -122,6 +126,3 @@
 }
 
 
-.error-mode * {
-    color: $error-red;
-}
