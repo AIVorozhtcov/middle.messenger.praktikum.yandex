@@ -9,6 +9,7 @@ class EventBus<T extends EventMap = DefaultEventMap> {
   private listeners: { [K in keyof T]?: EventCallback<T[K]>[] } = {};
 
   on<K extends keyof T>(event: K, callback: EventCallback<T[K]>): void {
+    console.log(event)
     if (!this.listeners[event]) {
       this.listeners[event] = [];
     }

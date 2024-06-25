@@ -6,14 +6,7 @@ import Input from "../../components/input/input";
 import SignupTemplate from "./signup.hbs?raw";
 import Form from "../../components/form/form";
 
-class Signup extends Block{
-    constructor(props: Props) {
-    super("div", props, SignupTemplate);
-    this.setProps({attrs:{
-        class: "card-canvas"
-      }});
-  }
-};
+
 
 const EmailInput = new CardInputBlock({
     inputChild: new Input({
@@ -109,18 +102,31 @@ const SignupCard = new Card({
             class: "signup-form"
         }
     }),
-    hrefAddress: "/src/pages/login/login.html",
+    hrefAddress: "/pages/login/login.html",
     hrefText: "Войти"
 });
 
-
-const SignupLayout = new Signup({
+const SignupData ={
     signupCard: SignupCard
-});
+};
+
+
+class Signup extends Block{
+    constructor() {
+    super("main", {}, SignupTemplate);
+    this.setProps({attrs:{
+        class: "card-canvas"
+      }});
+    this.setProps(SignupData);
+  }
+};
+
+const SignupLayout = new Signup();
 
 
 const SignupPage = new Page({
     pageLayout: SignupLayout,
 });
 
-SignupPage.mountElement("body");
+
+export default Signup

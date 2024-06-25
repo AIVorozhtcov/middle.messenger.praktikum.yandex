@@ -5,7 +5,7 @@ import Page from "../../components/page/page";
 class Error500 extends Block {
     constructor(props: Props) {
           
-      super("div", props, Error500Template);
+      super("main", props, Error500Template);
       this.setProps({attrs:{
         class: "error-canvas"
       }});
@@ -14,9 +14,6 @@ class Error500 extends Block {
 
 const error500Layout = new Error500({});
 
-const error500Page = new Page({});
 
-error500Page.setProps({pageLayout: error500Layout});
 
-error500Page.mountElement("body");
-
+export default Error500

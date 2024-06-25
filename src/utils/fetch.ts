@@ -31,20 +31,29 @@ function queryStringify(data: Data): string {
 }
 
 class HTTPTransport {
+    private _baseUrl: String;
+
+    constructor(baseURL: String){
+        this._baseUrl = baseURL;
+    }
+
     get(url: string, options: RequestOptions = { headers: {}, data: {}, timeout: 9000 }): Promise<XMLHttpRequest> {
-        url += queryStringify(options.data || {});
+        url = this._baseUrl + url +queryStringify(options.data || {});
         return this.request(url, { ...options, method: METHODS.GET });
     }
 
     post(url: string, options: RequestOptions = { headers: {}, data: {} }): Promise<XMLHttpRequest> {
+        url = this._baseUrl + url;
         return this.request(url, { ...options, method: METHODS.POST });
     }
 
     put(url: string, options: RequestOptions = { headers: {}, data: {} }): Promise<XMLHttpRequest> {
+        url = this._baseUrl + url +queryStringify(options.data || {});
         return this.request(url, { ...options, method: METHODS.PUT });
     }
 
     delete(url: string, options: RequestOptions = { headers: {}, data: {} }): Promise<XMLHttpRequest> {
+        url = this._baseUrl + url +queryStringify(options.data || {});
         return this.request(url, { ...options, method: METHODS.DELETE });
     }
 
@@ -54,6 +63,7 @@ class HTTPTransport {
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
             xhr.open(method, url);
+            xhr.withCredentials = true;
             xhr.timeout = timeout;
 
             Object.keys(headers).forEach(header => {
@@ -75,3 +85,5 @@ class HTTPTransport {
         });
     }
 }
+
+export default HTTPTransport;

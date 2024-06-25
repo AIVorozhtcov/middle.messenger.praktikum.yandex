@@ -7,12 +7,11 @@ import Button from "../../components/button/button";
 import ProfileTemplate from "./profile.hbs?raw";
 import Input from "../../components/input/input";
 
-class Profile extends Block{
-    constructor(props: Props) {
-    super("div", props, ProfileTemplate);
-    
-  }
-};
+import ProfilePageTemplate from "./profilePage.hbs?raw";
+
+import Router from "../../utils/router";
+
+
 
 const EmailLine = new ProfileLine({
     inputChild: new Input({
@@ -83,7 +82,7 @@ const PhoneLine = new ProfileLine({
 const SidebarButton = new Button({
     childElement: new Img({
         attrs:{
-            src: "/src/assets/back_button.svg",
+            src: "/assets/back_button.svg",
             alt: "Back button"
         }
     }),
@@ -92,7 +91,9 @@ const SidebarButton = new Button({
     },
     events: {
         click: _event => {
-            location.href='/index.html'
+            const ProfileRouter = new Router('body');
+            ProfileRouter.back();
+
         }
     },    
 });
@@ -134,20 +135,38 @@ const ExitButton = new Button({
     },
 })
 
-const ProfileLayout = new Profile({
+const ProfileData = {    
     sidebarButton: SidebarButton,
-    profilePictureSrc: "/src/assets/undefinedPhoto.jpg",
+    profilePictureSrc: "/assets/undefinedPhoto.jpg",
     displayName: "Doug",
     profileLines: [EmailLine, LoginLine, FirstNameLine, LastNameLine, DisplayNameLine, PhoneLine],
     editDataButton: EditDataButton,
     editPasswordButton: EditPasswordButton,
     exitButton: ExitButton
+}
 
-})
+class Profile extends Block{
+    constructor(props: Props) {
+    super("div", props, ProfileTemplate);
+    this.setProps(ProfileData);    
+  }
+};
 
 
-const ProfilePage = new Page({
-    pageLayout: ProfileLayout,
-});
+const ProfileLayout = new Profile(ProfileData)
 
-ProfilePage.mountElement("body");
+class ProfilePage extends Block{
+    constructor(){
+        super('main', {}, ProfilePageTemplate)
+        this.setProps({
+            profileLayout: ProfileLayout,
+        })
+    }
+}
+
+const ProfilePageInstance = new ProfilePage();
+
+
+
+
+export default ProfilePage

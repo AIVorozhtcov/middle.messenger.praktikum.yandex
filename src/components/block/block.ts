@@ -15,6 +15,11 @@ export type PropsWithChildren = {
     [K in string | symbol]: unknown | Block;
 };
 
+export type BlockType = {
+  new(propsAndParent: Props): Block
+};
+
+
 class Block {
   static EVENTS = {
     INIT: "init",

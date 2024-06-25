@@ -6,14 +6,6 @@ import LoginTemplate from "./login.hbs?raw";
 import Input from "../../components/input/input";
 import Form from "../../components/form/form";
 
-class Login extends Block{
-    constructor(props: Props) {
-    super("div", props, LoginTemplate);
-    this.setProps({attrs:{
-        class: "card-canvas"
-      }});
-  }
-};
 
 
 const LoginInput = new CardInputBlock({
@@ -51,18 +43,28 @@ const LoginCard = new Card({
             class: "login-form",
         }
     }),
-    hrefAddress: "/src/pages/signup/signup.html",
+    hrefAddress: "/pages/signup/signup.html",
     hrefText: "Нет аккаунта?"
 });
-
-
-const LoginLayout = new Login({
+ const LoginData = {
     loginCard: LoginCard
-});
+};
 
 
-const LoginPage = new Page({
-    pageLayout: LoginLayout,
-});
+class Login extends Block{
+    constructor() {
+    super("main", {} ,LoginTemplate);
+    this.setProps({attrs:{
+        class: "card-canvas"
+      }});
+    this.setProps(LoginData)
+  }
+};
 
-LoginPage.mountElement("body");
+const LoginLayout = new Login();
+
+
+
+
+
+export default Login

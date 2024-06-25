@@ -5,7 +5,7 @@ import Page from "../../components/page/page";
 class Error404 extends Block {
     constructor(props: Props) {
           
-      super("div", props, Error404Template);
+      super("main", props, Error404Template);
       this.setProps({attrs:{
         class: "error-canvas"
       }});
@@ -15,6 +15,5 @@ class Error404 extends Block {
 
 const error404Layout = new Error404({});
 
-const error404Page = new Page({pageLayout: error404Layout});
 
-error404Page.mountElement("body");
+export default Error404
