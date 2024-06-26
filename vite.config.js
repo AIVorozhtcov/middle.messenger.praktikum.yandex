@@ -77,6 +77,6 @@ export default defineConfig({
     },
   },
   server: {
-    open: resolve(__dirname, 'src/index.html'),
+    open: '/index.html', 
   },
 });

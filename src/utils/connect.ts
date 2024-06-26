@@ -3,10 +3,7 @@ import { BlockType } from "../components/block/block";
 import { Props } from "../components/block/block";
 import store, {StoreEvents} from "./store";
 import isEqual from "./isEqual";
-
-interface User{
-    first_name: string;
-}
+import { UserInfoInterface as User } from "../api/responseInterfaces";
 
 export type AppState = {
     user: null | User;

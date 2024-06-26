@@ -8,9 +8,7 @@ export enum StoreEvents {
 
 
 const initState: AppState = {
-    user: {
-        first_name: 'well'
-    },
+    user: null
     /*chats: null,
     currentChatId: null,
     chatSocket: null,

@@ -18,7 +18,7 @@ class ChatsAPI extends BaseAPI {
     getChats()  {
       return chatsHTTPInstance.get('/').then(xhr => {
         if (xhr.status === 200) {
-            return JSON.parse(xhr.responseText) as ChatInterface[];
+            return xhr.responseText
         }
         throw new Error(`Failed to fetch chats: ${xhr.status}`);
       });

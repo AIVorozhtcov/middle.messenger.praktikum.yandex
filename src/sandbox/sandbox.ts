@@ -10,17 +10,17 @@ import Img from "../components/img/img";
 import Signup from "../pages/signup/signup";
 import Login from "../pages/login/login";
 
-import AuthAPI from "../api/authApi";
-import ChatAPI from "../api/chatApi";
-import ChatsAPI from "../api/chatsApi";
+import ChatsControler from "../controllers/chatsController";
+import UserController from "../controllers/userController";
+import ChatController from "../controllers/chatController";
 
 import store, {StoreEvents} from "../utils/store";
 
 import Router from "../utils/router";
 
 
-const authApiInstance = new AuthAPI;
-const chatsApiInstance = new ChatsAPI;
+const chatsInstance = new ChatsControler;
+const userInstance = new UserController;
 
 
 
@@ -72,7 +72,7 @@ const LoginForm = new SandboxForm({
     }
 });
 
-const chatWS = new ChatAPI();
+const chatWS = new ChatController;
 
 const RequestButton = new SandboxButton({
     childElement: new Img({
@@ -88,14 +88,8 @@ const RequestButton = new SandboxButton({
     events: {
         click: async (_event) => {
             try {
-                const userInfo = await authApiInstance.getUserInfo();
-                const chatsInfo = await chatsApiInstance.getChats();
-                store.set({
-                    user: {
-                        first_name: userInfo.first_name,
-                    }
-                })
-                await chatWS.connect(chatsInfo[0].id);
+                const userInfo = await userInstance.getUserInfo;
+                await chatWS.connect();
             } catch (error) {
                 console.error("Failed to fetch user info:", error);
             }
