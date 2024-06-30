@@ -29,7 +29,6 @@ const ProfileEventBus = new EventBus();
 
 const UserControllerInstance = new UserController();
 
-    /* eslint-disable max-classes-per-file */
 async function initialize() {
     if (await UserControllerInstance.checkUserLoggedIn()){    
         await UserControllerInstance.getUserInfo();
@@ -365,7 +364,7 @@ class Profile extends Block{
 
 
 const ProfileLayout = new Profile(ProfileData)
-
+/* eslint-disable max-classes-per-file */
 class ProfilePage extends Block{
     constructor(){
         super('main', {}, ProfilePageTemplate);
