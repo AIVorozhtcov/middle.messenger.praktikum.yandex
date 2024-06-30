@@ -1,6 +1,6 @@
 import HTTPTransport from '../../utils/fetch';
 import { BaseAPI } from '../baseApi';
-import { UserInfoInterface,  UserUpdateInterface} from './user.types';
+import { UserUpdateInterface} from './user.types';
 const userHTTPInstance = new HTTPTransport('https://ya-praktikum.tech/api/v2/user');
 
 class UserApi extends BaseAPI {

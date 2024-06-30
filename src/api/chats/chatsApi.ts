@@ -1,6 +1,5 @@
 import HTTPTransport from '../../utils/fetch';
 import { BaseAPI } from '../baseApi';
-import ChatInterface from '../chat/chat.types';
 
 const chatsHTTPInstance = new HTTPTransport('https://ya-praktikum.tech/api/v2/chats');
 

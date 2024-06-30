@@ -3,7 +3,6 @@ import ProfileLineTemplate from "./profileLine.hbs?raw";
 import validateInput, { ValidationRule } from "../../utils/validation";
 import { ProfileEvents } from "../../pages/profile/profile";
 import { ProfileEventBus } from "../../pages/profile/profile";
-import { AppState } from "../../utils/store";
 import { StoreEvents } from "../../utils/store";
 import store from "../../utils/store";
 

@@ -1,5 +1,4 @@
-import Block from "../components/block/block";
-import { Props } from "../components/block/block";
+
 import { BlockType } from "../components/block/block";
 import Route from "./route";
 

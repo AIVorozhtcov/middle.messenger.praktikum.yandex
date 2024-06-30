@@ -24,7 +24,6 @@ class Error404 extends Block {
   
 };
 
-const error404Layout = new Error404({});
 
 
 export default Error404

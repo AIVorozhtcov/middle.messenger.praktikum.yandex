@@ -1,6 +1,5 @@
 import Block, {Props} from "../../components/block/block";
 import ChatsTemplate from "./chats.hbs?raw";
-import Page from "../../components/page/page";
 import Message from "../../components/message/message";
 import Chat from "../../components/chat/chat";
 import Form from "../../components/form/form";

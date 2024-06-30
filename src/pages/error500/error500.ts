@@ -23,7 +23,6 @@ class Error500 extends Block {
     }  
 };
 
-const error500Layout = new Error500({});
 
 
 

@@ -1,5 +1,4 @@
-import Block, {Props} from "../../components/block/block";
-import Page from "../../components/page/page";
+import Block from "../../components/block/block";
 import Card from "../../components/card/card";
 import CardInputBlock from "../../components/cardInputBlock/cardInputBlock";
 import LoginTemplate from "./login.hbs?raw";

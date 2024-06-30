@@ -1,4 +1,3 @@
-import { MessageInterface } from "./messages.types";
 
 class MessagesAPI{
     sendMessage(socket: WebSocket, content: string){

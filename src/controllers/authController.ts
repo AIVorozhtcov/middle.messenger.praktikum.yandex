@@ -1,5 +1,4 @@
 import AuthAPI from "../api/auth/authApi";
-import { UserInfoInterface } from "../api/user/user.types";
 import { UserRegistrationInterface, UserLoginInterface } from "../api/auth/auth.types";
 import store from "../utils/store";
 import UserController from "./userController";

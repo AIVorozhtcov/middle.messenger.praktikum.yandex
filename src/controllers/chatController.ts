@@ -1,7 +1,6 @@
 import ChatAPI from "../api/chat/chatApi";
 import store from "../utils/store";
 import UserController from "./userController";
-import ChatsControler from "./chatsController";
 import MessagesAPI from "../api/messages/messagesApi";
 
 import { MessageInterface } from "../api/messages/messages.types";
@@ -9,7 +8,6 @@ import { MessageInterface } from "../api/messages/messages.types";
 const ChatApiInstance = new ChatAPI;
 const MessageApiInstance = new MessagesAPI;
 const UserControllerInstance = new UserController;
-const ChatsControllerInstance = new ChatsControler;
 
 class ChatController {
     

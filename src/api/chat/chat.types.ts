@@ -1,4 +1,3 @@
-import { UserInfoInterface } from "../user/user.types";
 
 interface ChatInterface {
     chat_id: number;

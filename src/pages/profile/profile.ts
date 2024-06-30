@@ -1,6 +1,5 @@
 import Block, {Props} from "../../components/block/block";
 import ProfileLine from "../../components/profileLine/profileLine";
-import Page from "../../components/page/page";
 import Img from "../../components/img/img";
 import Span from "../../components/span/span";
 import Button from "../../components/button/button";
@@ -325,7 +324,6 @@ class Profile extends Block{
             state = newState;
         }
         });
-    const self = this;
     this.children.saveDataButton.setProps({
         events:{
             click: (event: Event) => {

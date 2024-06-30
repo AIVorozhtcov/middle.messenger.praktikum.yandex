@@ -1,10 +1,7 @@
 import Block, {Props} from "../block/block";
 import SearchBlockTemplate from "./searchBlock.hbs?raw";
 import UserController from "../../controllers/userController";
-import { UserInfoInterface } from "../../api/user/user.types";
 import SearchResult from "../searchResult/searchResult";
-import Popup from "../popup/popup";
-
 const UserControllerInstance = new UserController;
 
 class SearchBlock extends Block {

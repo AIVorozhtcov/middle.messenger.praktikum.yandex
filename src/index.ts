@@ -5,9 +5,7 @@ import Error404 from "./pages/error404/error404";
 import Error500 from "./pages/error500/error500";
 import Profile from "./pages/profile/profile";
 import Chats from "./pages/chats/chats";
-import UserController from "./controllers/userController";
 
-const UserControllerInstance = new UserController;
 
   
 const StartupRouter = new Router('#app');

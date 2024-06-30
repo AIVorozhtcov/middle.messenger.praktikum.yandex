@@ -26,7 +26,7 @@ const initState: AppState = {
     currentChatUsers: null,*/
   };
   
-  class Store<State extends Record<string, any>> extends EventBus {
+  class Store extends EventBus {
 
     
     private state: AppState;

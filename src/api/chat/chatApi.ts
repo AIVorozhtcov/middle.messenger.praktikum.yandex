@@ -1,12 +1,8 @@
 import HTTPTransport from '../../utils/fetch';
 import { BaseAPI } from '../baseApi';
 
-import AuthAPI from '../auth/authApi';
 
 const chatHTTPInstance = new HTTPTransport('https://ya-praktikum.tech/api/v2/chats');
-
-const authApiInstance = new AuthAPI;
-
 
 class ChatAPI extends BaseAPI {
     
