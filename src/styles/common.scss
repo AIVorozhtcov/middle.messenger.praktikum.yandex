@@ -63,18 +63,18 @@ $background-gray: #FBFBFB;
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s, opacity 0.5s;
-  }
+}
   
-  .popup-overlay.show {
-    visibility: visible;
-    opacity: 1;
-  }
+.popup-overlay.show {
+  visibility: visible;
+  opacity: 1;
+}
   
-  .popup {
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-  }
+.popup {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
   

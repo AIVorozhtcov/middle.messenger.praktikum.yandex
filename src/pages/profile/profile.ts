@@ -30,9 +30,16 @@ export enum ProfileEvents {
 const ProfileEventBus = new EventBus;
 
 const UserControllerInstance = new UserController;
-if (await UserControllerInstance.checkUserLoggedIn()){    
-    await UserControllerInstance.getUserInfo();
-}
+
+async function initialize() {
+    if (await UserControllerInstance.checkUserLoggedIn()){    
+        await UserControllerInstance.getUserInfo();
+    }
+  }
+  
+initialize();
+
+
 
 const AuthControllerInstance = new AuthController;
 

@@ -20,9 +20,14 @@ import ChatsController from "../../controllers/chatsController";
 const ChatsRouter = new Router('#app');
 const UserControllerInstance = new UserController;
 const ChatsControllerInstance = new ChatsController;
-if (await UserControllerInstance.checkUserLoggedIn()){        
-    await ChatsControllerInstance.getChats();
-}
+
+async function initialize() {
+    if (await UserControllerInstance.checkUserLoggedIn()) {
+      await ChatsControllerInstance.getChats();
+    }
+  }
+  
+initialize();
 
 function mapChats(state: AppState) {
     
