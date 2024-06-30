@@ -2,11 +2,9 @@ import UserApi from "../api/user/userApi";
 import store from "../utils/store";
 import { UserInfoInterface, UserUpdateInterface, PasswordChangeInterface } from "../api/user/user.types";
 import AuthAPI from "../api/auth/authApi";
-import ChatsController from "./chatsController";
 
 const UserApiInstance = new UserApi;
 const AuthApiInstance = new AuthAPI;
-const ChatsControllerInstance = new ChatsController;
 export const AvatarURL = "https://ya-praktikum.tech/api/v2/resources//";
 
 class UserController {
@@ -23,7 +21,7 @@ class UserController {
 
     async checkUserLoggedIn(): Promise<boolean> {
         try {
-            await AuthApiInstance.getUserInfo();
+            await AuthApiInstance.checkUserInfo();
             return true;
         } catch (error) {
             if (error.message.includes("401")) {

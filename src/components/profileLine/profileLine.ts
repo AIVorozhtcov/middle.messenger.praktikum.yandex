@@ -12,6 +12,7 @@ type UserProperty = 'first_name' | 'second_name' | 'display_name' | 'login' | 'e
 
 class ProfileLine extends Block {
     private _userProperty: UserProperty;
+    private _isEditing: boolean;
 
     constructor(props: Props, userProperty: UserProperty) {
       super("div", props, ProfileLineTemplate);
@@ -19,8 +20,7 @@ class ProfileLine extends Block {
       this.setProps({
         attrs:{
             class: "profile-line"
-        },
-        isEditing: false});
+        }});
       const inputElement = this.children.inputChild.element as HTMLInputElement; 
       const self = this;
       this.children.inputChild.setProps({ 
@@ -49,19 +49,12 @@ class ProfileLine extends Block {
         }
       })
       ProfileEventBus.on(ProfileEvents.EditingSwitch, () =>{
-        if (this.children.inputChild.props.attrs?.style){
-            this.children.inputChild.setProps({
-                attrs:{  
-                    style: null                  
-                }
-            })
-        } else {
-            this.children.inputChild.setProps({
-                attrs:{
-                    style: "pointer-events: none;"
-                }
-            })
-        }
+        this._isEditing = !this._isEditing
+        this.children.inputChild.setProps({ 
+            attrs:{
+                style: this._isEditing? null : "pointer-events: none;"
+            },
+          })
         
       })
       store.on(StoreEvents.Updated, () => {

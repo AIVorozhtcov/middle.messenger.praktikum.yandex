@@ -3,25 +3,28 @@ import { UserInfoInterface } from "../api/user/user.types";
 import { UserRegistrationInterface, UserLoginInterface } from "../api/auth/auth.types";
 import store from "../utils/store";
 import UserController from "./userController";
+import Router from "../utils/router";
 
+const AuthRouter = new Router('#app');
 const AuthApiInstance = new AuthAPI;
 const UserControllerInstance = new UserController;
 
 class AuthController {
     async createUser(formData: UserRegistrationInterface){
-        await AuthApiInstance.logout();
-        const createdID = JSON.parse(await AuthApiInstance.createUser(formData)).data.id;
+        const createdID = JSON.parse(await AuthApiInstance.createUser(formData)).id;
         store.set({
             user:{
                 id: createdID,
             }
         })
-        UserControllerInstance.getUserInfo();
+        UserControllerInstance.getUserInfo();        
+        AuthRouter.go('/chats')
 
     }
     async loginUser(loginData: UserLoginInterface){
         await AuthApiInstance.login(loginData);        
         UserControllerInstance.getUserInfo();
+        AuthRouter.go('/chats')
     }
 
     async logoutUser(){

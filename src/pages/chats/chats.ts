@@ -14,9 +14,16 @@ import MessageBlock from "../../components/messageBlock/messageBlock";
 import SearchBlock from "../../components/searchBlock/searchBlock";
 import Popup from "../../components/popup/popup";
 import Router from "../../utils/router";
+import UserController from "../../controllers/userController";
+import ChatsController from "../../controllers/chatsController";
 
 
 const ChatsRouter = new Router('#app');
+const UserControllerInstance = new UserController;
+const ChatsControllerInstance = new ChatsController;
+if (await UserControllerInstance.checkUserLoggedIn()){        
+    await ChatsControllerInstance.getChats();
+}
 
 function mapChats(state: AppState) {
     
@@ -135,13 +142,22 @@ const ChatsData = {
 
 class Chats extends Block {
     constructor(props: Props) {
-      super("main", props, ChatsTemplate);
-      this.setProps(ChatsData)
-      this.setProps({
-        attrs:{
-            style: "display: flex; height: 100vh;"
+      super("main", props, ChatsTemplate); 
+      this._checkSignedIn();
+    }
+
+    private async _checkSignedIn(){
+        if (await UserControllerInstance.checkUserLoggedIn()){
+            await ChatsControllerInstance.getChats();
+            this.setProps(ChatsData)
+            this.setProps({
+              attrs:{
+                class: "chats-page"
+              }
+            })
+        } else {
+            ChatsRouter.go('/login')
         }
-      })
     }
   
 };

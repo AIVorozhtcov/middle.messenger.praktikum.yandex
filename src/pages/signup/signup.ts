@@ -1,5 +1,4 @@
 import Block, {Props} from "../../components/block/block";
-import Page from "../../components/page/page";
 import Card from "../../components/card/card";
 import CardInputBlock from "../../components/cardInputBlock/cardInputBlock";
 import Input from "../../components/input/input";
@@ -7,9 +6,11 @@ import SignupTemplate from "./signup.hbs?raw";
 import Form from "../../components/form/form";
 import AuthController from "../../controllers/authController";
 import Hyperlink from "../../components/hyperlink/hyperlink";
+import UserController from "../../controllers/userController";
+import Router from "../../utils/router";
 
-
-
+const SignupRouter = new Router('#app');
+const UserControllerInstance = new UserController;
 const AuthInstance = new AuthController;
 
 const EmailInput = new CardInputBlock({
@@ -121,10 +122,19 @@ const SignupData ={
 class Signup extends Block{
     constructor() {
     super("main", {}, SignupTemplate);
-    this.setProps({attrs:{
-        class: "card-canvas"
-      }});
-    this.setProps(SignupData);
+    this._checkSignedIn();    
+
+  }
+
+  private async _checkSignedIn(){
+    if (await UserControllerInstance.checkUserLoggedIn()){
+        SignupRouter.go('/chats')
+    } else {
+        this.setProps({attrs:{
+            class: "card-canvas"
+          }});
+        this.setProps(SignupData);
+    }
   }
 };
 

@@ -18,6 +18,15 @@ class AuthAPI extends BaseAPI {
       return authHTTPInstance.get('/user').then(xhr => {
           if (xhr.status === 200) {
               return xhr.responseText;
+          }
+          throw new Error(`Failed to fetch user info: ${xhr.status}`);
+      });
+    }
+
+    async checkUserInfo() {
+      return authHTTPInstance.get('/user').then(xhr => {
+          if (xhr.status === 200) {
+              return xhr.responseText;
           } else if (xhr.status === 401) {
               throw new Error(`401 Unauthorized`);
           }
@@ -39,6 +48,7 @@ class AuthAPI extends BaseAPI {
     logout() {
        authHTTPInstance.post('/logout', {}).then(xhr => {
         if (xhr.status === 200) {
+          return xhr.responseText;
         }
         throw new Error(`Failed to register: ${xhr.status}`);
       });

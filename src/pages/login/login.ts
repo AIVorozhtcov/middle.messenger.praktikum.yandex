@@ -7,7 +7,11 @@ import Input from "../../components/input/input";
 import Form from "../../components/form/form";
 import AuthController from "../../controllers/authController";
 import Hyperlink from "../../components/hyperlink/hyperlink";
+import UserController from "../../controllers/userController";
+import Router from "../../utils/router";
 
+const UserControllerInstance = new UserController;
+const LoginRouter = new Router('#app');
 const AuthInstance = new AuthController;
 
 
@@ -60,15 +64,22 @@ const LoginCard = new Card({
 
 class Login extends Block{
     constructor() {
-    super("main", {} ,LoginTemplate);
-    this.setProps({attrs:{
-        class: "card-canvas"
-      }});
-    this.setProps(LoginData)
-  }
-};
+        super("main", {} ,LoginTemplate);
+        this._checkSignedIn();
+        
+    }
+    private async _checkSignedIn(){
+        if (await UserControllerInstance.checkUserLoggedIn()){
+            LoginRouter.go('/chats')
+        } else {
+            this.setProps({attrs:{
+                class: "card-canvas"
+            }});
+            this.setProps(LoginData)
+        }
+    }
 
-const LoginLayout = new Login();
+};
 
 
 

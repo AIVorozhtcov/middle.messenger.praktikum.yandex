@@ -46,7 +46,6 @@ const initState: AppState = {
 
     public set(newState: Record<string, any>): void{
         this.state = { ...this.state, ...newState };  
-        console.log(newState)
         this.emit(StoreEvents.Updated);
     };
   }

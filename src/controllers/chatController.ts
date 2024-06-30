@@ -96,7 +96,6 @@ class ChatController {
     }
 
     sendMessage(message: string){
-        console.log(this._chatSocket)
         MessageApiInstance.sendMessage(this._chatSocket, message);
     }
 

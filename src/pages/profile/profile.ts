@@ -31,6 +31,9 @@ export enum ProfileEvents {
 const ProfileEventBus = new EventBus;
 
 const UserControllerInstance = new UserController;
+if (await UserControllerInstance.checkUserLoggedIn()){    
+    await UserControllerInstance.getUserInfo();
+}
 
 const AuthControllerInstance = new AuthController;
 
@@ -39,7 +42,6 @@ const ProfileRouter = new Router('#app');
 
 export {ProfileEventBus};
 
-await UserControllerInstance.getUserInfo()
 
 
 const AvatarInput = new CardInputBlock({
@@ -185,7 +187,7 @@ const SidebarButton = new Button({
     },
     events: {
         click: _event => {
-            ProfileRouter.back();
+            ProfileRouter.go('/chats');
 
         }
     },    
@@ -318,7 +320,6 @@ class Profile extends Block{
     let state = mapDisplayNameAndAvatar(store.getState());
     store.on(StoreEvents.Updated, () => {
         const newState = mapDisplayNameAndAvatar(store.getState());
-        console.log(newState);
         if (newState&&!isEqual(state, newState)) {
             this.setProps({...newState});            
             state = newState;
@@ -338,9 +339,6 @@ class Profile extends Block{
                 
                     const inputElement = input.children.inputChild.element as HTMLInputElement;   
                     const isValid = validateInput(inputElement.name as ValidationRule, inputElement.value);
-                    console.log(inputElement.name);
-                    console.log(inputElement.value);
-                    console.log(isValid)
                     if (!isValid) {
                         isValidForm = false;
                         input.setProps({
@@ -366,14 +364,27 @@ const ProfileLayout = new Profile(ProfileData)
 
 class ProfilePage extends Block{
     constructor(){
-        super('main', {}, ProfilePageTemplate)
-        this.setProps({
-            profileLayout: ProfileLayout,
-        })
+        super('main', {}, ProfilePageTemplate);
+        this._checkSignedIn();
+        
     }
+
+    private async _checkSignedIn(){
+        if (await UserControllerInstance.checkUserLoggedIn()){
+            await UserControllerInstance.getUserInfo();
+            this.setProps({
+                profileLayout: ProfileLayout,
+                attrs:{
+                    class:"profile-page",
+                }
+            })
+        } else {
+            ProfileRouter.go('/login')
+        }
+    }
+    
 }
 
-const ProfilePageInstance = new ProfilePage();
 
 
 

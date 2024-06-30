@@ -36,7 +36,6 @@ class ChatsController{
         }));
 
         store.set({ chats: mappedChats });
-        console.log(store.getState().chats);
         return mappedChats;
     }
 
@@ -54,7 +53,6 @@ class ChatsController{
             return commonChats.length > 0;
         } catch (error) {
             if (error.message.includes("400")) {
-                // Treat 400 error as no common chats
                 return false;
             } else {
                 console.error(`Failed to get common chats`, error);
