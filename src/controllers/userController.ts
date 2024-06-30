@@ -68,7 +68,7 @@ class UserController {
     async updateAvatar(newAvatar: File) {        
         const avatarData = new FormData();
         avatarData.append('avatar', newAvatar);
-        const newAvatarPath =AvatarURL + JSON.parse(await UserApiInstance.updateAvatar(avatarData)).avatar;
+        await UserApiInstance.updateAvatar(avatarData)
         this.getUserInfo();
 
     }
