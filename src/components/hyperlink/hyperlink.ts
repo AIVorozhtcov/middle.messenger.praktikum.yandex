@@ -10,9 +10,6 @@ class Hyperlink extends Block {
     constructor(props: Props) {
         super("a", props, HyperlinkTemplate);
         this.setProps({
-            attrs:{
-                class: "no-account"
-            },
             events:{
                 click: (event: Event) => {
                     event.preventDefault(); 

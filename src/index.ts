@@ -12,17 +12,13 @@ const UserControllerInstance = new UserController;
   
 const StartupRouter = new Router('#app');
 StartupRouter.use('/login', Login);
-StartupRouter.use('/signup', Signup);
+StartupRouter.use('/sign-up', Signup);
 StartupRouter.use('/error404', Error404);
 StartupRouter.use('/error500', Error500);
-StartupRouter.use('/profile', Profile);
-StartupRouter.use('/chats', Chats);
+StartupRouter.use('/settings', Profile);
+StartupRouter.use('/messenger', Chats);
  
 StartupRouter.start();
 
 
-if (await UserControllerInstance.checkUserLoggedIn()){
-} else {
-    StartupRouter.go('/login')
-}
 

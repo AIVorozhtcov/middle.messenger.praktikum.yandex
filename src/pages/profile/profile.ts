@@ -187,7 +187,7 @@ const SidebarButton = new Button({
     },
     events: {
         click: _event => {
-            ProfileRouter.go('/chats');
+            ProfileRouter.go('/messenger');
 
         }
     },    

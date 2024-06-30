@@ -41,8 +41,11 @@ const PasswordInput = new CardInputBlock({
 });
 
 const SignupHyperlink = new Hyperlink({    
-    destination: "/signup",
-    hrefText: "Нет аккаунта?"
+    destination: "/sign-up",
+    hrefText: "Нет аккаунта?",    
+    attrs:{
+        class: "no-account"
+    },
 })
 
 const LoginCard = new Card({
@@ -70,7 +73,7 @@ class Login extends Block{
     }
     private async _checkSignedIn(){
         if (await UserControllerInstance.checkUserLoggedIn()){
-            LoginRouter.go('/chats')
+            LoginRouter.go('/messenger')
         } else {
             this.setProps({attrs:{
                 class: "card-canvas"

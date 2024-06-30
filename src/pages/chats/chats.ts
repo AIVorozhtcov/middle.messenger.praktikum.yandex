@@ -95,7 +95,7 @@ const ProfileButton = new Button({
     events: {
         click: (_event: Event) => {
             _event.preventDefault();
-            ChatsRouter.go('/profile')
+            ChatsRouter.go('/settings')
         }
     },    
 })

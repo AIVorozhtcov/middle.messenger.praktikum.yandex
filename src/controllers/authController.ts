@@ -18,13 +18,13 @@ class AuthController {
             }
         })
         UserControllerInstance.getUserInfo();        
-        AuthRouter.go('/chats')
+        AuthRouter.go('/messenger')
 
     }
     async loginUser(loginData: UserLoginInterface){
         await AuthApiInstance.login(loginData);        
         UserControllerInstance.getUserInfo();
-        AuthRouter.go('/chats')
+        AuthRouter.go('/messenger')
     }
 
     async logoutUser(){

@@ -96,7 +96,10 @@ const RepeatPasswordInput = new CardInputBlock({
 
 const LoginHyperlink = new Hyperlink({    
     destination: "/login",
-    hrefText: "Войти"
+    hrefText: "Войти",    
+    attrs:{
+        class: "no-account"
+    },
 })
 
 
@@ -128,7 +131,7 @@ class Signup extends Block{
 
   private async _checkSignedIn(){
     if (await UserControllerInstance.checkUserLoggedIn()){
-        SignupRouter.go('/chats')
+        SignupRouter.go('/messenger')
     } else {
         this.setProps({attrs:{
             class: "card-canvas"
