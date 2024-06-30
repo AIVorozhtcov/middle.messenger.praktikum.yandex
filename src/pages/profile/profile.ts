@@ -308,7 +308,7 @@ function mapDisplayNameAndAvatar(state: AppState) {
         })
     };
 }
-
+/* eslint-disable max-classes-per-file */
 class Profile extends Block{
     constructor(props: Props) {
     super("div", props, ProfileTemplate);
