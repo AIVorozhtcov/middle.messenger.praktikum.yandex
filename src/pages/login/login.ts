@@ -7,6 +7,7 @@ import Form from "../../components/form/form";
 import AuthController from "../../controllers/authController";
 import Hyperlink from "../../components/hyperlink/hyperlink";
 import UserController from "../../controllers/userController";
+import { UserLoginInterface } from "../../api/auth/auth.types";
 import Router from "../../utils/router";
 
 const UserControllerInstance = new UserController;
@@ -48,7 +49,7 @@ const SignupHyperlink = new Hyperlink({
 })
 
 const LoginCard = new Card({
-    form: new Form({
+    form: new Form<UserLoginInterface>({
         title:"Вход",
         inputs: [LoginInput, PasswordInput],
         submitClass: "login-submit-button",

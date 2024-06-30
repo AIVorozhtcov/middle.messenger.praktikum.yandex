@@ -7,6 +7,7 @@ import Form from "../../components/form/form";
 import AuthController from "../../controllers/authController";
 import Hyperlink from "../../components/hyperlink/hyperlink";
 import UserController from "../../controllers/userController";
+import { UserRegistrationInterface } from "../../api/auth/auth.types";
 import Router from "../../utils/router";
 
 const SignupRouter = new Router('#app');
@@ -105,7 +106,7 @@ const LoginHyperlink = new Hyperlink({
 
 
 const SignupCard = new Card({
-    form: new Form({
+    form: new Form<UserRegistrationInterface>({
         title:"Регистрация",
         inputs: [EmailInput, LoginInput, FirstNameInput, SecondNameInput, PhoneInput, PasswordInput, RepeatPasswordInput],
         submitClass: "signup-submit-button",

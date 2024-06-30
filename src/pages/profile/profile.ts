@@ -19,6 +19,7 @@ import ProfilePageTemplate from "./profilePage.hbs?raw";
 import Router from "../../utils/router";
 import isEqual from "../../utils/isEqual";
 import CardInputBlock from "../../components/cardInputBlock/cardInputBlock";
+import { PasswordChangeInterface } from "../../api/user/user.types";
 
 export enum ProfileEvents {
     EditingSwitch = 'editingSwitched'
@@ -97,7 +98,7 @@ const PasswordNewInput = new CardInputBlock({
     inputTitle: "Новый пароль",
 });
 
-const PasswordForm = new Form({
+const PasswordForm = new Form<PasswordChangeInterface>({
     title:"Вход",
     inputs: [PasswordOldInput, PasswordNewInput],
     submitClass: "login-submit-button",

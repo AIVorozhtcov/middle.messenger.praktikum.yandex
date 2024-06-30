@@ -27,10 +27,10 @@ class ChatController {
 
    
 
-    async connectToChat(chat_id: number){
+    async connectToChat(chatId: number){
         const userID = (await UserControllerInstance.getUserInfo()).id;
-        const wsToken = await JSON.parse(await ChatApiInstance.getWsToken(chat_id)).token;        
-        this._chatSocket = await ChatApiInstance.connect(chat_id, userID, wsToken)
+        const wsToken = await JSON.parse(await ChatApiInstance.getWsToken(chatId)).token;        
+        this._chatSocket = await ChatApiInstance.connect(chatId, userID, wsToken)
         this._chatSocket.addEventListener('open', () => {
             
             this.getOldMessages();
@@ -81,7 +81,7 @@ class ChatController {
             messages: null
         });
         store.set({
-            currentChatId: chat_id,
+            currentChatId: chatId,
         })
         store.set({
             socket: this._chatSocket

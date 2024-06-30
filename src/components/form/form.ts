@@ -6,8 +6,8 @@ import UserController from "../../controllers/userController";
 const UserControllerInstance = new UserController;
 
 
-class Form extends Block {
-    constructor(props: Props, submitAction: ({})=>void) {
+class Form<T> extends Block {
+    constructor(props: Props, submitAction: (data: T) => void) {
         super("form", props, FormTemplate);  
         this.setProps({
             events:{
@@ -33,7 +33,7 @@ class Form extends Block {
                     });
                     
                     if (isValidForm) {
-                        submitAction(formObject)
+                        submitAction(formObject as T)
                     }
                 }
             }
