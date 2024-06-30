@@ -1,0 +1,26 @@
+@import "/src/styles/common";
+
+.signup-submit-button{
+    @include submit-button;
+
+    margin-top: 62px;
+}
+
+.signup-form{
+    @include form-rules;
+}
+
+.has-account{
+    @include form-alternative;
+}
+
+
+.error-message{
+    color: $error-red;
+    font-family: Inter, sans-serif;
+    font-size: 8px;
+    line-height: 8px;
+    text-align: start;
+    margin-top: 7px;
+    
+}

@@ -1,0 +1,128 @@
+@import "/src/styles/common";
+
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 64px;
+    height: 100vh;
+    background: $background-gray;
+    border-right: 1px solid $border-gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-button {
+    width: 28px;
+    height: 28px; 
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-circle {
+    width: 130px; 
+    height: 130px; 
+    border-radius: 50%;
+    overflow: hidden;
+    margin: auto;
+    margin-top: 60px;
+}
+
+.image-circle img {
+    width: 100%;
+    height: auto;
+}
+
+.photo-name{
+    margin: 21px 0 0;
+    color: $black;
+    text-align: center;
+
+    @include regular-text;
+
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 16px; 
+}
+
+
+.error-mode * {
+    color: $error-red;
+}
+
+.editing-options{
+    margin-top:60 px;
+    
+    *{
+        text-decoration: none; 
+        color: inherit; 
+        cursor: pointer; 
+        background-color: transparent;
+        border: none;
+    }
+}
+
+.profile-lines {
+    display: flex;
+    margin-top: 60px;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+     
+}
+
+.profile-lines .profile-line {
+    border-bottom: 1px solid $border-gray;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    width: 510px;
+    margin: 0;
+    
+    * {
+        @include regular-text;
+    }
+
+    &:last-child {
+        padding: 10px 0 0;
+        border-bottom: none;
+    }
+
+    &:first-child{
+        padding: 0 0 10px;
+    }
+}
+
+
+.options-left-text{
+    color: $blue;    
+}
+
+.exit-left-text{
+    color: $text-red;
+}
+
+.profile-left-text {
+    color: $black;
+    text-align: left;
+
+
+}
+
+.profile-right-text {
+    color: $gray;
+    text-align: right;
+    outline: none;
+    cursor: default;
+    padding: 0;
+    border-width: 0;
+}
+
+
