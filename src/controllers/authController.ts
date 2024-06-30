@@ -5,8 +5,8 @@ import UserController from "./userController";
 import Router from "../utils/router";
 
 const AuthRouter = new Router('#app');
-const AuthApiInstance = new AuthAPI;
-const UserControllerInstance = new UserController;
+const AuthApiInstance = new AuthAPI();
+const UserControllerInstance = new UserController();
 
 class AuthController {
     async createUser(formData: UserRegistrationInterface){

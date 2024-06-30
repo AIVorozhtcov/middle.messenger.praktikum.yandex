@@ -2,7 +2,7 @@ import Block, {Props}  from "../block/block";
 import ChatTemplate from "./chat.hbs?raw";
 import ChatController from "../../controllers/chatController";
 
-const chatControllerInstance = new ChatController;
+const chatControllerInstance = new ChatController();
 
 class Chat extends Block {
     constructor(props: Props) {

@@ -10,9 +10,9 @@ import UserController from "../../controllers/userController";
 import { UserLoginInterface } from "../../api/auth/auth.types";
 import Router from "../../utils/router";
 
-const UserControllerInstance = new UserController;
+const UserControllerInstance = new UserController();
 const LoginRouter = new Router('#app');
-const AuthInstance = new AuthController;
+const AuthInstance = new AuthController();
 
 
 const LoginInput = new CardInputBlock({

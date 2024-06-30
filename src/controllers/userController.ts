@@ -3,8 +3,8 @@ import store from "../utils/store";
 import { UserInfoInterface, UserUpdateInterface, PasswordChangeInterface } from "../api/user/user.types";
 import AuthAPI from "../api/auth/authApi";
 
-const UserApiInstance = new UserApi;
-const AuthApiInstance = new AuthAPI;
+const UserApiInstance = new UserApi();
+const AuthApiInstance = new AuthAPI();
 export const AvatarURL = "https://ya-praktikum.tech/api/v2/resources//";
 
 class UserController {

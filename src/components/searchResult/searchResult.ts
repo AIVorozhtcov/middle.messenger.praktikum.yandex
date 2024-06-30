@@ -2,7 +2,7 @@ import Block, {Props}  from "../block/block";
 import SearchResultTemplate from "./searchResult.hbs?raw";
 import ChatsController from "../../controllers/chatsController";
 
-const ChatsControllerInstance = new ChatsController
+const ChatsControllerInstance = new ChatsController();
 
 
 class SearchResult extends Block {

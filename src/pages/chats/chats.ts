@@ -18,8 +18,8 @@ import ChatsController from "../../controllers/chatsController";
 
 
 const ChatsRouter = new Router('#app');
-const UserControllerInstance = new UserController;
-const ChatsControllerInstance = new ChatsController;
+const UserControllerInstance = new UserController();
+const ChatsControllerInstance = new ChatsController();
 
 async function initialize() {
     if (await UserControllerInstance.checkUserLoggedIn()) {

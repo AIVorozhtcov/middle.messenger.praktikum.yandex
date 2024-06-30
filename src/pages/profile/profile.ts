@@ -25,9 +25,9 @@ export enum ProfileEvents {
     EditingSwitch = 'editingSwitched'
 }
 
-const ProfileEventBus = new EventBus;
+const ProfileEventBus = new EventBus();
 
-const UserControllerInstance = new UserController;
+const UserControllerInstance = new UserController();
 
 async function initialize() {
     if (await UserControllerInstance.checkUserLoggedIn()){    
@@ -39,7 +39,7 @@ initialize();
 
 
 
-const AuthControllerInstance = new AuthController;
+const AuthControllerInstance = new AuthController();
 
 
 const ProfileRouter = new Router('#app');

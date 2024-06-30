@@ -4,7 +4,7 @@ import store from "../utils/store";
 import { ChatUserInterface } from "../api/user/user.types";
 import { AvatarURL } from "./userController";
 
-const ChatsApiInstance = new ChatsAPI
+const ChatsApiInstance = new ChatsAPI();
 
 
 class ChatsController{

@@ -11,8 +11,8 @@ import { UserRegistrationInterface } from "../../api/auth/auth.types";
 import Router from "../../utils/router";
 
 const SignupRouter = new Router('#app');
-const UserControllerInstance = new UserController;
-const AuthInstance = new AuthController;
+const UserControllerInstance = new UserController();
+const AuthInstance = new AuthController();
 
 const EmailInput = new CardInputBlock({
     inputChild: new Input({

@@ -3,7 +3,7 @@ import SearchBlockTemplate from "./searchBlock.hbs?raw";
 import UserController from "../../controllers/userController";
 import SearchResult from "../searchResult/searchResult";
 
-const UserControllerInstance = new UserController;
+const UserControllerInstance = new UserController();
 
 class SearchBlock extends Block {
 

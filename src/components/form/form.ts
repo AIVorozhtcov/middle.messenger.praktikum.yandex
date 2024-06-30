@@ -3,7 +3,7 @@ import FormTemplate from "./form.hbs?raw";
 import validateInput, { ValidationRule } from "../../utils/validation";
 import UserController from "../../controllers/userController";
 
-const UserControllerInstance = new UserController;
+const UserControllerInstance = new UserController();
 
 
 class Form<T> extends Block {

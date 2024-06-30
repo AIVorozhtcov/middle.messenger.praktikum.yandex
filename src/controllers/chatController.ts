@@ -5,9 +5,9 @@ import MessagesAPI from "../api/messages/messagesApi";
 
 import { MessageInterface } from "../api/messages/messages.types";
 
-const ChatApiInstance = new ChatAPI;
-const MessageApiInstance = new MessagesAPI;
-const UserControllerInstance = new UserController;
+const ChatApiInstance = new ChatAPI();
+const MessageApiInstance = new MessagesAPI();
+const UserControllerInstance = new UserController();
 
 class ChatController {
     
