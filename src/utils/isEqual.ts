@@ -18,28 +18,26 @@ function isArrayOrObject(value: unknown): value is [] | PlainObject {
 }
 
 function isEqual(lhs: PlainObject, rhs: PlainObject) {
+    
     if (Object.keys(lhs).length !== Object.keys(rhs).length) {
         return false;
     }
 
     for (const [key, value] of Object.entries(lhs)) {
-				if (!rhs.hasOwnProperty(key)){
-					return false;
-				};
-        const rightValue = rhs[key];
-        if (isArrayOrObject(value) && isArrayOrObject(rightValue)) {
-            if (isEqual(value, rightValue)) {
-                continue;
-            }
+        if (!Object.prototype.hasOwnProperty.call(rhs, key)) {
             return false;
         }
-
-        if (value !== rightValue) {
+        const rightValue = rhs[key];
+        if (isArrayOrObject(value) && isArrayOrObject(rightValue)) {
+            if (!isEqual(value, rightValue)) {
+                return false;
+            }
+        } else if (value !== rightValue) {
             return false;
         }
     }
 
-    return true;
+    return true
 }
 
 export default isEqual

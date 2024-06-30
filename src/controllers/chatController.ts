@@ -13,7 +13,7 @@ class ChatController {
     
     static __instance: ChatController | undefined;
     private scrollToBottom: () => void;
-
+    /* eslint-disable no-constructor-return*/
     constructor() {
         if (ChatController.__instance) {
             return ChatController.__instance;

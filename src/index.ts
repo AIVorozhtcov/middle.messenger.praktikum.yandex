@@ -14,6 +14,7 @@ StartupRouter.use('/sign-up', Signup);
 StartupRouter.use('/error404', Error404);
 StartupRouter.use('/error500', Error500);
 StartupRouter.use('/settings', Profile);
+StartupRouter.use('/', Chats);
 StartupRouter.use('/messenger', Chats);
  
 StartupRouter.start();
