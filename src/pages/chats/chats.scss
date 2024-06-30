@@ -65,6 +65,7 @@
 .message-section::-webkit-scrollbar {
     display: none;
 }
+
 .message-form-container {
     padding: 10px;
     background-color: color.adjust($background-gray, $lightness: 10%);
@@ -118,7 +119,6 @@
 .search-block {
     display: flex;
 }
-
 
 .profile-button {
     border: none;
