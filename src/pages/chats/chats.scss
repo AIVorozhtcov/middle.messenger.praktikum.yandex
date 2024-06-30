@@ -24,7 +24,7 @@
 }
 
 .chat-sidebar .chat-item:hover {
-    background-color: darken($background-gray, 10%);
+    background-color: color.adjust($background-gray, $lightness: -10%);
 }
 
 .chat-container {
@@ -41,7 +41,7 @@
 
 .search-section {
     padding: 10px;
-    background-color: lighten($background-gray, 10%);
+    background-color: color.adjust($background-gray, $lightness: 10%);
     border-bottom: 1px solid $border-gray;
     display: flex;
 }
@@ -57,7 +57,7 @@
     flex: 1;
     overflow-y: auto;
     padding: 10px;
-    background-color: lighten($background-gray, 5%);
+    background-color: color.adjust($background-gray, $lightness: 5%);
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
@@ -67,7 +67,7 @@
 }
 .message-form-container {
     padding: 10px;
-    background-color: lighten($background-gray, 10%);
+    background-color: color.adjust($background-gray, $lightness: 10%);
     border-top: 1px solid $border-gray;
 }
 
@@ -118,6 +118,7 @@
 .search-block {
     display: flex;
 }
+
 
 .profile-button {
     border: none;
