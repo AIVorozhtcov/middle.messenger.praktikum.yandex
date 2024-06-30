@@ -5,7 +5,10 @@ import CardInputBlock from "../../components/cardInputBlock/cardInputBlock";
 import LoginTemplate from "./login.hbs?raw";
 import Input from "../../components/input/input";
 import Form from "../../components/form/form";
+import AuthController from "../../controllers/authController";
+import Hyperlink from "../../components/hyperlink/hyperlink";
 
+const AuthInstance = new AuthController;
 
 
 const LoginInput = new CardInputBlock({
@@ -33,6 +36,11 @@ const PasswordInput = new CardInputBlock({
     inputTitle: "Пароль",
 });
 
+const SignupHyperlink = new Hyperlink({    
+    destination: "/signup",
+    hrefText: "Нет аккаунта?"
+})
+
 const LoginCard = new Card({
     form: new Form({
         title:"Вход",
@@ -42,9 +50,8 @@ const LoginCard = new Card({
         attrs:{
             class: "login-form",
         }
-    }),
-    hrefAddress: "/pages/signup/signup.html",
-    hrefText: "Нет аккаунта?"
+    }, AuthInstance.loginUser),
+    hyperlink: SignupHyperlink
 });
  const LoginData = {
     loginCard: LoginCard

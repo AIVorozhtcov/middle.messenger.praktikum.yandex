@@ -1,35 +1,47 @@
-import ChatAPI from "../api/chatApi";
+import ChatAPI from "../api/chat/chatApi";
 import store from "../utils/store";
 import UserController from "./userController";
 import ChatsControler from "./chatsController";
+import MessagesAPI from "../api/messages/messagesApi";
 
-const chatApiInstance = new ChatAPI;
-const userControllerInstance = new UserController;
-const chatsControllerInstance = new ChatsControler;
+import { MessageInterface } from "../api/messages/messages.types";
+
+const ChatApiInstance = new ChatAPI;
+const MessageApiInstance = new MessagesAPI;
+const UserControllerInstance = new UserController;
+const ChatsControllerInstance = new ChatsControler;
 
 class ChatController {
+    
+    static __instance: ChatController | undefined;
+    private scrollToBottom: () => void;
 
-    private _chatSocket: WebSocket;
+    constructor() {
+        if (ChatController.__instance) {
+            return ChatController.__instance;
+        }
 
-    async getFirstChat(){
-        const Chats = await chatsControllerInstance.getChats();
-        return Chats[0]
+        ChatController.__instance = this;
     }
 
-    async connect(){
-        const chatId = (await this.getFirstChat()).id;
-        const userID = (await userControllerInstance.getUserInfo()).id;
-        const wsToken = await JSON.parse(await chatApiInstance.getWsToken(chatId)).token;
-        this._chatSocket = await chatApiInstance.connect(chatId, userID, wsToken)
+    private _chatSocket: WebSocket;
+    private _offsetCounter: number = 0;
+
+   
+
+    async connectToChat(chat_id: number){
+        const userID = (await UserControllerInstance.getUserInfo()).id;
+        const wsToken = await JSON.parse(await ChatApiInstance.getWsToken(chat_id)).token;        
+        this._chatSocket = await ChatApiInstance.connect(chat_id, userID, wsToken)
         this._chatSocket.addEventListener('open', () => {
-            console.log('Соединение установлено');
-          
-            this._chatSocket.send(JSON.stringify({
-                content: 'Connected',
-                type: 'message',
-            }));
+            
+            this.getOldMessages();
+            
+
         });
         this._chatSocket.addEventListener('close', (event: any) => {
+            clearInterval(pingInterval);
+            this._offsetCounter = 0;
             if (event.wasClean) {
               console.log('Соединение закрыто чисто');
             } else {
@@ -38,14 +50,77 @@ class ChatController {
           
             console.log(`Код: ${event.code} | Причина: ${event.reason}`);
           });
+        this._chatSocket.addEventListener('message', (event: MessageEvent) => {
+            const data = JSON.parse(event.data);
+            if (Array.isArray(data)) {
+                const reversedMessages = data.reverse();
+                const filteredMessages = this.filterMessages(reversedMessages);
+                if (filteredMessages.length > 0) {
+                    const currentMessages = store.getState().messages || [];
+                    store.set({ messages: [...filteredMessages, ...currentMessages] });                    
+                    if (this.scrollToBottom) this.scrollToBottom();
+                }
+                if (filteredMessages.length == 20){
+                        this._offsetCounter+=20;
+                        this.getOldMessages();
+                }                
+            } else {
+                const message = this.mapMessage(data);
+                if (message) {
+                    const currentMessages = store.getState().messages || [];
+                    store.set({ messages: [...currentMessages, message] });                    
+                    if (this.scrollToBottom) this.scrollToBottom();
+                }
+            }
+        });
+        if (store.getState().chatSocket){
+            store.getState().chatSocket?.close();
+        }
+        let pingInterval = setInterval(() => {
+            this._chatSocket.send(JSON.stringify({ type: 'ping' }));
+        }, 30000);
+        store.set({
+            messages: null
+        });
+        store.set({
+            currentChatId: chat_id,
+        })
+        store.set({
+            socket: this._chatSocket
+        })
 
     }
 
+    getOldMessages(){
+        MessageApiInstance.getMessages(this._chatSocket, this._offsetCounter.toString());
+    }
+
     sendMessage(message: string){
-        this._chatSocket.send(JSON.stringify({
-            content: message,
-            type: 'message',
-          }));
+        console.log(this._chatSocket)
+        MessageApiInstance.sendMessage(this._chatSocket, message);
+    }
+
+    setScrollToBottom(scrollFunction: () => void) {
+        this.scrollToBottom = scrollFunction;
+    }
+
+    private mapMessage(data: any): MessageInterface | null {
+        if (data.type === 'message') {
+            return {
+                id: data.id,
+                time: data.time,
+                user_id: data.user_id,
+                content: data.content,
+                my_message: data.user_id == store.getState().user?.id? true : false
+            };
+        }
+        return null;
+    }
+
+    private filterMessages(data: any[]): MessageInterface[] {
+        return data
+            .filter(message => message.type === 'message')
+            .map(message => this.mapMessage(message)) as MessageInterface[];
     }
 }
 

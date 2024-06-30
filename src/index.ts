@@ -5,6 +5,7 @@ import Error404 from "./pages/error404/error404";
 import Error500 from "./pages/error500/error500";
 import Profile from "./pages/profile/profile";
 import Sandbox from "./sandbox/sandbox";
+import Chats from "./pages/chats/chats";
 
 const routes = [
     { path: '/login', name: 'Login' },
@@ -12,6 +13,7 @@ const routes = [
     { path: '/error404', name: 'Error404' },
     { path: '/error500', name: 'Error500' },
     { path: '/profile', name: 'Profile' },
+    { path: '/chats', name: 'Chats'},
     { path: '/sandbox', name: 'Sandbox' }
   ];
   
@@ -21,6 +23,7 @@ const routes = [
   StartupRouter.use('/error404', Error404);
   StartupRouter.use('/error500', Error500);
   StartupRouter.use('/profile', Profile);
+  StartupRouter.use('/chats', Chats);
   StartupRouter.use('/sandbox', Sandbox);
   
   function createLinks() {

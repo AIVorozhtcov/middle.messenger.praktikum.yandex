@@ -4,9 +4,8 @@
 </div>
 
 <div>
-        <div class="image-circle">
-            <img src="{{props.profilePictureSrc}}" alt="Profile photo">
-        </div>
+        
+        {{{props.avatarButton}}}
         <p class="photo-name">{{props.displayName}}</p>
 
         <form class="profile-lines">
@@ -16,7 +15,8 @@
 
 
             
-            {{{props.editDataButton}}}
+            {{#unless props.isEditing}}{{{props.editDataButton}}}{{/unless}}
+            {{#if props.isEditing}}{{{props.saveDataButton}}}{{/if}}
             {{{props.editPasswordButton}}}
             {{{props.exitButton}}}
 
@@ -26,3 +26,5 @@
                 
         </div>
     </div>
+{{{props.passwordPopup}}}
+{{{props.avatarPopup}}}

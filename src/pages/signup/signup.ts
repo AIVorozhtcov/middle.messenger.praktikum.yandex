@@ -5,8 +5,12 @@ import CardInputBlock from "../../components/cardInputBlock/cardInputBlock";
 import Input from "../../components/input/input";
 import SignupTemplate from "./signup.hbs?raw";
 import Form from "../../components/form/form";
+import AuthController from "../../controllers/authController";
+import Hyperlink from "../../components/hyperlink/hyperlink";
 
 
+
+const AuthInstance = new AuthController;
 
 const EmailInput = new CardInputBlock({
     inputChild: new Input({
@@ -89,6 +93,10 @@ const RepeatPasswordInput = new CardInputBlock({
 });
 
 
+const LoginHyperlink = new Hyperlink({    
+    destination: "/login",
+    hrefText: "Войти"
+})
 
 
 
@@ -101,9 +109,8 @@ const SignupCard = new Card({
         attrs:{
             class: "signup-form"
         }
-    }),
-    hrefAddress: "/pages/login/login.html",
-    hrefText: "Войти"
+    }, AuthInstance.createUser),
+    hyperlink: LoginHyperlink
 });
 
 const SignupData ={
@@ -121,12 +128,6 @@ class Signup extends Block{
   }
 };
 
-const SignupLayout = new Signup();
-
-
-const SignupPage = new Page({
-    pageLayout: SignupLayout,
-});
 
 
 export default Signup

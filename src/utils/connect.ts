@@ -3,16 +3,8 @@ import { BlockType } from "../components/block/block";
 import { Props } from "../components/block/block";
 import store, {StoreEvents} from "./store";
 import isEqual from "./isEqual";
-import { UserInfoInterface as User } from "../api/responseInterfaces";
+import { AppState } from "./store";
 
-export type AppState = {
-    user: null | User;
-    /*chats: null | Chat[];
-    currentChatId: null | string;
-    chatSocket: ChatWebsocket | null;
-    messages: Message[] | null;
-    currentChatUsers: User[] | null;*/
-};
 
 
 function connect(Component: BlockType, mapStateToProps: (state: AppState) => {},) {
@@ -20,10 +12,10 @@ function connect(Component: BlockType, mapStateToProps: (state: AppState) => {},
     constructor(props: Props = {}) {
       super({...props, ...mapStateToProps(store.getState())});
       let state = mapStateToProps(store.getState());
+      
 
     store.on(StoreEvents.Updated, () => {
         const newState = mapStateToProps(store.getState());
-        console.log(newState);
         if (!isEqual(state, newState)) {
             this.setProps({...newState});            
             state = newState;

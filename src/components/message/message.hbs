@@ -1,3 +1,4 @@
-<div style="background-color: green; padding: 8px; margin-bottom: 8px; border-radius: 5px; color: white;">
-    <div>{{props.text}}</div>
+<div class="message-container {{#if props.my_message}}my-message{{else}}other-message{{/if}}">
+    <div class="message-time">{{props.time}}</div>
+    <div class="message-content">{{props.content}}</div>
 </div>

@@ -1,6 +1,8 @@
 import Block, {Props} from "../block/block";
 import SandboxButtonTemplate from "./sandboxButton.hbs?raw";
-import connect, { AppState } from "../../utils/connect";
+import connect from "../../utils/connect";
+
+import { AppState } from "../../utils/store";
 
 class SandboxButton extends Block {
     constructor(props: Props) {

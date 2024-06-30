@@ -37,12 +37,8 @@ class Router {
 
     start() {
         window.onpopstate = (event) => {
-            console.log('aaaaaaaaaaaaaaaaaaaaaaaaaa')
             const window = event.currentTarget as Window;
             if (window) {
-                
-                console.log('bbbbbbbbbbbbbbbbbbbbbbbb')
-                console.log(window.location.pathname);
                 this._onRoute(window.location.pathname);
             }
         };
@@ -66,16 +62,18 @@ class Router {
     }
 
     go(pathname: string) {
-        
+        scroll(0,0)        
         this.history.pushState({}, '', pathname);
         this._onRoute(pathname);
     }
 
     back() {
+        scroll(0,0)
         this.history.back();
     }
 
     forward() {
+        scroll(0,0)
         this.history.forward();
     }
 

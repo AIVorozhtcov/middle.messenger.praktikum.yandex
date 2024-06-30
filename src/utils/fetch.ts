@@ -48,7 +48,7 @@ class HTTPTransport {
     }
 
     put(url: string, options: RequestOptions = { headers: {}, data: {} }): Promise<XMLHttpRequest> {
-        url = this._baseUrl + url +queryStringify(options.data || {});
+        url = this._baseUrl + url;
         return this.request(url, { ...options, method: METHODS.PUT });
     }
 
@@ -78,6 +78,8 @@ class HTTPTransport {
 
             if (method === METHODS.GET || !data) {
                 xhr.send();
+            } else if (data instanceof FormData) {
+                xhr.send(data);
             } else {
                 xhr.setRequestHeader('Content-Type', 'application/json');
                 xhr.send(JSON.stringify(data));

@@ -7,6 +7,9 @@ import SandboxForm from "../components/sandboxComponents/sandboxForm";
 import SandboxButton from "../components/sandboxComponents/sandboxButton";
 import Img from "../components/img/img";
 
+import Form from "../components/form/form";
+import Popup from "../components/popup/popup";
+
 import Signup from "../pages/signup/signup";
 import Login from "../pages/login/login";
 
@@ -21,6 +24,8 @@ import Router from "../utils/router";
 
 const chatsInstance = new ChatsControler;
 const userInstance = new UserController;
+
+await userInstance.getUserInfo();
 
 
 
@@ -87,9 +92,10 @@ const RequestButton = new SandboxButton({
     },
     events: {
         click: async (_event) => {
+            chatsInstance.getChats();
             try {
                 const userInfo = await userInstance.getUserInfo;
-                await chatWS.connect();
+                await chatWS.connectToChat(12);
             } catch (error) {
                 console.error("Failed to fetch user info:", error);
             }
@@ -118,12 +124,72 @@ const RouterButton = new SandboxButton({
     }   
 });
 
+const AvatarInput = new SandboxInputBlock({
+    inputChild: new SandboxInput({
+        attrs:{                
+            id: 1,
+            type: "file",
+            name: "avatar",  
+        }, 
+        header:"image"     
+    }),
+    inputTitle: "Новый аватар",
+});
+
+const AvatarForm = new Form({
+    title:"Новый Аватар",
+    inputs: [AvatarInput],
+    submitClass: "login-submit-button",
+    submitText: "Авторизоваться",
+    attrs:{
+        class: "login-form",
+    }
+}, ()=>{});
+
+const AvatarPopup = new Popup({
+    popupChild: AvatarForm
+})
+
+const PopupButton = new SandboxButton({
+    childElement: new Img({
+        attrs:{
+            src: "/assets/back_button.svg",
+            alt: "Back button"
+        }
+    }),
+    userName:"ignore",
+    attrs: {
+        class: "back-button",
+    },
+    events: {
+        click: async (_event) => {
+            AvatarPopup.setProps({
+                attrs:{
+                    class: "popup-overlay show",
+                }
+            })  
+        },    
+    }   
+});
+
+const Avatar = new Img({
+    attrs:{
+        src: store.getState().user?.avatar ?store.getState().user?.avatar : "/assets/empty_profile.png",
+        alt: "Back button"
+    }
+})
+
+
+
 const SandboxData = {
+    avatar: Avatar,
     loginInput: LoginInput,
     passwordInput: PasswordInput,
     loginForm: LoginForm,
     requestButton: RequestButton,
-    routerButton: RouterButton
+    routerButton: RouterButton,
+    popupButton: PopupButton,
+    avatarPopup: AvatarPopup
 };
 
 
@@ -152,7 +218,7 @@ const SandboxPage = new Page({pageLayout: SandboxLayout});
 
 
 
-const SandboxRouter = new Router("body");
+const SandboxRouter = new Router('#app');
 
 
 export default Sandbox

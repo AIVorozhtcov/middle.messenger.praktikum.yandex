@@ -1,7 +1,8 @@
 import Block, {Props}  from "../block/block";
 import SandboxFormTemplate from "./sandboxForm.hbs?raw";
 import validateInput, { ValidationRule } from "../../utils/validation";
-import AuthAPI from "../../api/authApi";
+import AuthAPI from "../../api/auth/authApi";
+import { UserLoginInterface } from "../../api/auth/auth.types";
 
 const AuthApiInstance = new AuthAPI;
 
@@ -25,7 +26,10 @@ class SandboxForm extends Block {
                         console.log(formObject)
                     }
 
-                    AuthApiInstance.login(formObject);
+                    AuthApiInstance.login({
+                        login: formObject.login,
+                        password: formObject.password
+                    });
                 }
             }
         })      
