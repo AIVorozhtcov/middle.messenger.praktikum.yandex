@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import Block, {Props} from "../../components/block/block";
 import ProfileLine from "../../components/profileLine/profileLine";
 import Img from "../../components/img/img";
