@@ -73,12 +73,8 @@ export default defineConfig({
         profile: resolve(__dirname, 'src/pages/profile/profile.html'),
         error404: resolve(__dirname, 'src/pages/errors/error404.html'),
         error500: resolve(__dirname, 'src/pages/errors/error500.html'),   
-      },
-      output: {
-        assetFileNames: 'assets/[name][extname]', // Ensure assets are in the correct folder
-      },
+      }
     },
-    outDir: resolve(__dirname, 'src/dist'),
   },
   server: {
     open: '/chats', 
