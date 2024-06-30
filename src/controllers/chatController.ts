@@ -108,7 +108,7 @@ class ChatController {
                 time: data.time,
                 user_id: data.user_id,
                 content: data.content,
-                my_message: data.user_id == store.getState().user?.id? true : false
+                my_message: data.user_id == store.getState().user?.id
             };
         }
         return null;

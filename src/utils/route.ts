@@ -1,6 +1,4 @@
-import Block from "../components/block/block";
-import { BlockType } from "../components/block/block";
-import { Props } from "../components/block/block";
+import Block, {BlockType, Props} from "../components/block/block";
 
 function render(query: string, block: Block) {
     const root = document.querySelector(query);

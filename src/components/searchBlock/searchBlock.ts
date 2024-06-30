@@ -2,6 +2,7 @@ import Block, {Props} from "../block/block";
 import SearchBlockTemplate from "./searchBlock.hbs?raw";
 import UserController from "../../controllers/userController";
 import SearchResult from "../searchResult/searchResult";
+
 const UserControllerInstance = new UserController;
 
 class SearchBlock extends Block {
@@ -14,7 +15,7 @@ class SearchBlock extends Block {
       })
       this.children.searchButton.setProps({
         events: {
-            click: async (_event: Event)=>{
+            click: async (_event: Event) => {
                 _event.preventDefault();
                 this.children.searchPopup.setProps({
                     attrs:{

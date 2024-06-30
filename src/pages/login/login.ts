@@ -66,7 +66,7 @@ const LoginCard = new Card({
 
 class Login extends Block{
     constructor() {
-        super("main", {} ,LoginTemplate);
+        super("main", {}, LoginTemplate);
         this._checkSignedIn();
         
     }

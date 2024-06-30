@@ -9,7 +9,7 @@ class MessageBlock extends Block {
       super("div", props, MessageBlockTemplate);
       this.children.messageForm.setProps({
         events: {
-            submit: (_event: Event)=>{
+            submit: (_event: Event) => {
                 _event.preventDefault();
                 const messageElement = this.children.messageForm.lists.inputs[0].children.inputChild.element as HTMLInputElement;
                 if (messageElement.value){

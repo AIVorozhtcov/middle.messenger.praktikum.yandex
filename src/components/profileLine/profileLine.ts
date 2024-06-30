@@ -1,10 +1,8 @@
 import Block, {Props}  from "../block/block";
 import ProfileLineTemplate from "./profileLine.hbs?raw";
 import validateInput, { ValidationRule } from "../../utils/validation";
-import { ProfileEvents } from "../../pages/profile/profile";
-import { ProfileEventBus } from "../../pages/profile/profile";
-import { StoreEvents } from "../../utils/store";
-import store from "../../utils/store";
+import { ProfileEvents, ProfileEventBus } from "../../pages/profile/profile";
+import store, { StoreEvents } from "../../utils/store";
 
 type UserProperty = 'first_name' | 'second_name' | 'display_name' | 'login' | 'email' | 'phone';
 
@@ -47,7 +45,7 @@ class ProfileLine extends Block {
             }
         }
       })
-      ProfileEventBus.on(ProfileEvents.EditingSwitch, () =>{
+      ProfileEventBus.on(ProfileEvents.EditingSwitch, () => {
         this._isEditing = !this._isEditing
         this.children.inputChild.setProps({ 
             attrs:{

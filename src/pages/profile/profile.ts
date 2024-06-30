@@ -11,12 +11,9 @@ import Popup from "../../components/popup/popup";
 import Form from "../../components/form/form";
 import AuthController from "../../controllers/authController";
 
-import { AppState } from "../../utils/store";
-import { StoreEvents } from "../../utils/store";
+import store, { AppState, StoreEvents } from "../../utils/store";
 
 import validateInput, {ValidationRule} from "../../utils/validation";
-
-import store from "../../utils/store";
 import ProfilePageTemplate from "./profilePage.hbs?raw";
 
 import Router from "../../utils/router";
@@ -70,7 +67,7 @@ const AvatarForm = new Form({
     attrs:{
         class: "login-form",
     }
-}, ()=>{});
+}, () => {});
 
 const AvatarPopup = new Popup({
     popupChild: AvatarForm
@@ -108,7 +105,7 @@ const PasswordForm = new Form({
     attrs:{
         class: "login-form",
     }
-},UserControllerInstance.changePassword)
+}, UserControllerInstance.changePassword)
 
 const PasswordPopup = new Popup({
     popupChild: PasswordForm
@@ -211,7 +208,7 @@ const EditDataButton = new Button({
         class: "profile-line editing-option",
     },
     events:{
-        click:() =>{
+        click:() => {
             ProfileEventBus.emit(ProfileEvents.EditingSwitch)
         }
     }
@@ -318,7 +315,7 @@ class Profile extends Block{
     this.setProps({
         isEditing: false
     });
-    ProfileEventBus.on(ProfileEvents.EditingSwitch, () =>{
+    ProfileEventBus.on(ProfileEvents.EditingSwitch, () => {
         this.setProps({
             isEditing: !this.props.isEditing
         })

@@ -22,7 +22,7 @@ const initState: AppState = {
     chats: null,
     currentChatId: null,
     chatSocket: null,
-    messages: null,/*
+    messages: null, /*
     currentChatUsers: null,*/
   };
   

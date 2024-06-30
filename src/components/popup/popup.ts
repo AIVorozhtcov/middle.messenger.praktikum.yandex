@@ -1,5 +1,6 @@
 import Block, {Props} from "../block/block";
 import PopupTemplate from "./popup.hbs?raw";
+
 class Popup extends Block {
     private popupOverlay: HTMLElement | null;
 

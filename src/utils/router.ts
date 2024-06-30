@@ -61,18 +61,18 @@ class Router {
     }
 
     go(pathname: string) {
-        scroll(0,0)        
+        scroll(0, 0)        
         this.history.pushState({}, '', pathname);
         this._onRoute(pathname);
     }
 
     back() {
-        scroll(0,0)
+        scroll(0, 0)
         this.history.back();
     }
 
     forward() {
-        scroll(0,0)
+        scroll(0, 0)
         this.history.forward();
     }
 

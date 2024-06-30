@@ -40,8 +40,8 @@ class ChatsAPI extends BaseAPI {
         throw new Error(`Failed to fetch chat users: ${xhr.status}`);
       });
     }
-    getCommonChats(target_id: string){
-      return chatsHTTPInstance.get('/' + target_id + '/common').then(xhr => {
+    getCommonChats(targetId: string){
+      return chatsHTTPInstance.get('/' + targetId + '/common').then(xhr => {
         if (xhr.status === 200) {
             return xhr.responseText;
         } else if (xhr.status === 400) {

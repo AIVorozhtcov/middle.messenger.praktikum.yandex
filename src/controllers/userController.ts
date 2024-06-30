@@ -65,7 +65,7 @@ class UserController {
         return filteredUsers; */
     }
 
-    async updateAvatar (newAvatar: File) {
+    async updateAvatar(newAvatar: File) {
         const avatarData = new FormData();
         avatarData.append('avatar', newAvatar);
         this.getUserInfo();

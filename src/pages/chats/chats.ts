@@ -118,7 +118,7 @@ const messageForm= new Form({
         ],
     submitText: "Отправить",   
     
-    }, ()=>{});
+    }, () => {});
 
 const SearchSection = new SearchBlock({
     searchButton: SearchButton,

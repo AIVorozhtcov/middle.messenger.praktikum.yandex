@@ -1,8 +1,6 @@
-import { BlockType } from "../components/block/block";
-import { Props } from "../components/block/block";
-import store, {StoreEvents} from "./store";
+import { BlockType, Props } from "../components/block/block";
+import store, {StoreEvents, AppState} from "./store";
 import isEqual from "./isEqual";
-import { AppState } from "./store";
 
 
 
