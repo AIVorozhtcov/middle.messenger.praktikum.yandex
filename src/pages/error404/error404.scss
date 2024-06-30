@@ -16,22 +16,17 @@
     margin-top: 20px;
     color: $black;
     text-align: center;
-
     @include regular-text;
-
     font-size: 20px;
     line-height: 20px;
 }
 
-.error-retreat{
-    
+.error-retreat{    
     cursor: pointer;
     margin-top: 69px;
     color: $blue;
     text-align: center;
-
     @include regular-text;
-
     font-size: 11px;
     line-height: 11px;
 }
