@@ -28,9 +28,10 @@
 ## Ссылки на Netlify
 
 - [Netlify starting page](https://sparkling-rolypoly-2e981d.netlify.app/)
-- [Netlify login page](https://sparkling-rolypoly-2e981d.netlify.app/src/pages/login/login)
-- [Netlify signup page](https://sparkling-rolypoly-2e981d.netlify.app/src/pages/signup/signup)
-- [Netlify profile page](https://sparkling-rolypoly-2e981d.netlify.app/src/pages/profile/profile)
-- [Netlify error 404](https://sparkling-rolypoly-2e981d.netlify.app/src/pages/errors/error404)
-- [Netlify error 500](https://sparkling-rolypoly-2e981d.netlify.app/src/pages/errors/error500)
+- [Netlify login page](https://sparkling-rolypoly-2e981d.netlify.app/login)
+- [Netlify signup page](https://sparkling-rolypoly-2e981d.netlify.app/sign-up)
+- [Netlify profile page](https://sparkling-rolypoly-2e981d.netlify.app/settings)
+- [Netlify messenger page](https://sparkling-rolypoly-2e981d.netlify.app/messenger)
+- [Netlify error 404](https://sparkling-rolypoly-2e981d.netlify.app/error404)
+- [Netlify error 500](https://sparkling-rolypoly-2e981d.netlify.app/error500)
 
