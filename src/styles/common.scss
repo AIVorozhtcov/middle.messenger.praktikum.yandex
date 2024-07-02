@@ -49,6 +49,15 @@ $background-gray: #FBFBFB;
     line-height: 13px;
 }
 
+@mixin button-icon {    
+    height: 28px; 
+    padding-left: 2px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: flex;
+}
+
 
 .popup-overlay {
     position: fixed;

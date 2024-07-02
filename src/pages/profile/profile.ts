@@ -241,11 +241,7 @@ const EditPasswordButton = new Button({
     events:{
         click:(_event: Event) => {
             _event.preventDefault();
-            PasswordPopup.setProps({
-                attrs:{
-                    class: "popup-overlay show",
-                }
-            })
+            PasswordPopup.appear();
         }
     }
 })
@@ -271,7 +267,7 @@ const ExitButton = new Button({
 
 const ProfileData = {    
     sidebarButton: SidebarButton,
-    profilePictureSrc: store.getState().user?.avatar ?store.getState().user?.avatar : "/assets/empty_profile.png",
+    profilePictureSrc: store.getState().user?.avatar,
     displayName: store.getState().user?.display_name as string,
     profileLines: [EmailLine, LoginLine, FirstNameLine, LastNameLine, DisplayNameLine, PhoneLine],
     editDataButton: EditDataButton,
@@ -299,11 +295,7 @@ function mapDisplayNameAndAvatar(state: AppState) {
             events: {
                 click: (_event: Event) => {
                     _event.preventDefault();
-                    AvatarPopup.setProps({
-                        attrs:{
-                            class: "popup-overlay show",
-                        }
-                    })
+                    AvatarPopup.appear();
                 }
             },    
         })

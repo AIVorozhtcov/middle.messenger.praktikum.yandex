@@ -27,7 +27,7 @@ class ChatController {
 
    
 
-    async connectToChat(chatId: number){
+    async connectToChat(chatId: number, chatName: string, avatar: string){
         const userID = (await UserControllerInstance.getUserInfo()).id;
         const wsToken = await JSON.parse(await ChatApiInstance.getWsToken(chatId)).token;        
         this._chatSocket = await ChatApiInstance.connect(chatId, userID, wsToken)
@@ -71,8 +71,8 @@ class ChatController {
                 }
             }
         });
-        if (store.getState().chatSocket){
-            store.getState().chatSocket?.close();
+        if (store.getState().currentChat?.socket){
+            store.getState().currentChat?.socket.close();
         }
         let pingInterval = setInterval(() => {
             this._chatSocket.send(JSON.stringify({ type: 'ping' }));
@@ -81,7 +81,11 @@ class ChatController {
             messages: null
         });
         store.set({
-            currentChatId: chatId,
+            currentChat:{
+                chat_id: chatId,
+                avatar: avatar,
+                name: chatName
+            }
         })
         store.set({
             socket: this._chatSocket

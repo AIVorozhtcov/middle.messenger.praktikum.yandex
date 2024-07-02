@@ -1,15 +1,16 @@
 import EventBus from "./eventBus";
 import { UserInfoInterface } from "../api/user/user.types";
-import ChatInterface from "../api/chat/chat.types";
+import {ChatInterface, CurrentChatInterface} from "../api/chat/chat.types";
 import { MessageInterface } from "../api/messages/messages.types";
 
 export type AppState = {
     user: null | UserInfoInterface;
     chats: null | ChatInterface[];
+    currentChat: null | CurrentChatInterface;
     currentChatId: null | string;
-    chatSocket: WebSocket | null;
-    messages: MessageInterface[] | null;/*
-    currentChatUsers: User[] | null;*/
+    //chatSocket: WebSocket | null;
+    messages: MessageInterface[] | null;
+    currentChatUsers: UserInfoInterface[] | null;
 };
 
 export enum StoreEvents {
@@ -21,9 +22,9 @@ const initState: AppState = {
     user: null,
     chats: null,
     currentChatId: null,
-    chatSocket: null,
-    messages: null, /*
-    currentChatUsers: null,*/
+    currentChat: null,
+    messages: null, 
+    currentChatUsers: null
   };
   
   class Store extends EventBus {

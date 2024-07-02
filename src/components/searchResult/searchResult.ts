@@ -1,17 +1,16 @@
 import Block, {Props}  from "../block/block";
 import SearchResultTemplate from "./searchResult.hbs?raw";
-import ChatsController from "../../controllers/chatsController";
 
-const ChatsControllerInstance = new ChatsController();
 
 
 class SearchResult extends Block {
-    constructor(props: Props) {
+    constructor(props: Props, clickFunction: Function) {
       super("div", props, SearchResultTemplate);
       this.setProps({
         events:{
             click: () => {
-                ChatsControllerInstance.createChat(this.props.login as string, this.props.id as number)
+                clickFunction(this.props.id);
+                //ChatsControllerInstance.createChat(this.props.login as string, this.props.id as number)
             }
         }
       })

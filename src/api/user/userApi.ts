@@ -12,6 +12,9 @@ class UserApi extends BaseAPI {
                 return xhr.responseText;
             }
             throw new Error(`Failed to update user info: ${xhr.status}`);
+        }).catch(error => {
+            console.error(error);
+            throw error;
         });
     }
 
@@ -21,6 +24,9 @@ class UserApi extends BaseAPI {
                 return xhr.responseText;
             }
             throw new Error(`Failed to update avatar: ${xhr.status}`);
+        }).catch(error => {
+            console.error(error);
+            throw error;
         });
     }
 
@@ -30,6 +36,9 @@ class UserApi extends BaseAPI {
                 return xhr.responseText;
             }
             throw new Error(`Failed to find users: ${xhr.status}`);
+        }).catch(error => {
+            console.error(error);
+            throw error;
         });
     }
 
@@ -39,6 +48,9 @@ class UserApi extends BaseAPI {
                 return xhr.responseText;
             }
             throw new Error(`Failed to change password: ${xhr.status}`);
+        }).catch(error => {
+            console.error(error);
+            throw error;
         });
     }
 

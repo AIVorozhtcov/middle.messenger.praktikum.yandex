@@ -6,8 +6,8 @@ import isEqual from "./isEqual";
 
 function connect(Component: BlockType, mapStateToProps: (state: AppState) => {},) {
   return class extends Component {
-    constructor(props: Props = {}) {
-      super({...props, ...mapStateToProps(store.getState())});
+    constructor(props: Props = {}, ...args: any[]) {
+      super({ ...props, ...mapStateToProps(store.getState()) }, ...args);
       let state = mapStateToProps(store.getState());
       
 

@@ -5,14 +5,12 @@ import AuthAPI from "../api/auth/authApi";
 
 const UserApiInstance = new UserApi();
 const AuthApiInstance = new AuthAPI();
-export const AvatarURL = "https://ya-praktikum.tech/api/v2/resources//";
+export const AvatarURL = "https://ya-praktikum.tech/api/v2/resources/";
 
 class UserController {
     async getUserInfo(){
-        const UserData = JSON.parse(await AuthApiInstance.getUserInfo()) as UserInfoInterface;   
-        if (UserData.avatar){
-            UserData.avatar = AvatarURL + UserData.avatar;
-        }     
+        const UserData = JSON.parse(await AuthApiInstance.getUserInfo()) as UserInfoInterface;
+        UserData.avatar = UserData.avatar? AvatarURL + UserData.avatar : "/assets/empty_profile.png";
         store.set({
             user: UserData
         })

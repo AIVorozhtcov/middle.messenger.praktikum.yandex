@@ -19,7 +19,10 @@ class ChatAPI extends BaseAPI {
                 return xhr.responseText;
             }
             throw new Error(`Failed to get ws token: ${xhr.status}`);
-          });
+          }).catch(error => {
+                console.error(error);
+                throw error;
+            });
     }
 
     

@@ -1,30 +1,24 @@
 import ChatsAPI from "../api/chats/chatsApi";
-import ChatInterface from "../api/chat/chat.types";
+import { ChatInterface } from "../api/chat/chat.types";
 import store from "../utils/store";
-import { ChatUserInterface } from "../api/user/user.types";
+import { CreateChatInterface } from "../api/chats/chats.types";
 import { AvatarURL } from "./userController";
+import { UserInfoInterface } from "../api/user/user.types";
 
 const ChatsApiInstance = new ChatsAPI();
 
 
 class ChatsController{
-    async getChats(){
+    getChats = async () => {
         const chatsResponse = JSON.parse(await ChatsApiInstance.getChats()) as any[];
-
-        const userId = store.getState().user?.id;
         const mappedChats = await Promise.all(chatsResponse.map(async chat => {
-            const usersResponse = JSON.parse(await ChatsApiInstance.getChatUsers(chat.id)) as ChatUserInterface[];
-            const targetUser = usersResponse.find(user => user.id !== userId);
-            if (targetUser?.avatar){
-                targetUser.avatar = AvatarURL + targetUser.avatar;
-            }
+            
 
 
             return {
                 chat_id: chat.id,
-                target_display_name: targetUser?.display_name ? targetUser.display_name : targetUser?.login,
                 title: chat.title,
-                avatar: targetUser?.avatar,
+                avatar: chat.avatar ? AvatarURL + chat.avatar : "/assets/empty_profile.png",
                 unread_count: chat.unread_count,
                 last_message: chat.last_message ? {
                     user_login: chat.last_message.user.login,
@@ -39,13 +33,43 @@ class ChatsController{
         return mappedChats;
     }
 
-    async createChat(targetLogin: string, targetId: number){
+    createChat = async (creationData: CreateChatInterface) => {
+        await ChatsApiInstance.createChat(creationData);
+        await this.getChats();
+    }
+
+    addUserToChat = async (userId: number, chatId: number = store.getState().currentChat?.chat_id as number) => {  
+            const fakeArray: number[] = [userId];
+            await ChatsApiInstance.addUserToChat(fakeArray, chatId);
+            await this.getChatUsers(chatId)
+        }        
+
+    getChatUsers = async (chatId: number) => {
+        const chatUsers = JSON.parse(await ChatsApiInstance.getChatUsers(chatId)) as UserInfoInterface[];
+        const currentUser = store.getState().user;
+
+        if (currentUser) {
+            chatUsers.filter(user => user.id !== currentUser.id);
+        }
+        store.set({
+            currentChatUsers: chatUsers
+        })
+    }
+
+    removeUserFromChat = async (userId: number, chatId: number = store.getState().currentChat?.chat_id as number) => {       
+            const fakeArray: number[] = [userId];
+            await ChatsApiInstance.deleteUserFromChat(fakeArray, chatId);
+            await this.getChatUsers(chatId)
+        }        
+
+    /*async create1On1Chat(targetLogin: string, targetId: number){
         const chatName = store.getState().user?.login + 'and' + targetLogin + 'chat';
         const newChatId = JSON.parse(await ChatsApiInstance.createChat(chatName)).id;
         const fakeArray: number[] = [targetId];
         ChatsApiInstance.addUserToChat(fakeArray, newChatId);        
         this.getChats();
-    }
+    } */
+
     async hasCommonChats(targetId: number) {
         try {
             const response = await ChatsApiInstance.getCommonChats(targetId.toString());

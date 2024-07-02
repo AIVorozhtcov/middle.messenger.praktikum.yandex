@@ -13,4 +13,11 @@ interface ChatInterface {
     }
 }
 
-export default ChatInterface
+interface CurrentChatInterface {
+    chat_id: number;
+    name: string;
+    avatar: string;
+    socket: WebSocket;
+}
+
+export {ChatInterface, CurrentChatInterface}

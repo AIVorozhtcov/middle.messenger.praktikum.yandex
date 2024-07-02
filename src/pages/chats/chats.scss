@@ -43,7 +43,6 @@
 
 .search-section {
     padding: 10px;
-    background-color: color.adjust($background-gray, $lightness: 10%);
     border-bottom: 1px solid $border-gray;
     display: flex;
 }
@@ -104,12 +103,7 @@
 }
 
 .search-icon {
-    height: 28px; 
-    padding-left: 2px;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    display: flex;
+    @include button-icon
 }
 
 .search-button {
@@ -130,15 +124,40 @@
 }
 
 .profile-icon {
-    height: 28px; 
-    padding-left: 2px;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    display: flex;
+    @include button-icon
 }
 
 .chats-page {
     display: flex;
     height: 100vh;
+}
+
+.add-chat-icon{
+    @include button-icon
+}
+
+.add-chat-button{
+    border: none;
+    color: transparent;
+    background-color: transparent;
+}
+
+.remove-users-icon{
+    @include button-icon
+}
+
+.remove-users-button{
+    border: none;
+    color: transparent;
+    background-color: transparent;
+    margin-left: auto;
+}
+
+.chatbar{
+    display: flex;
+    align-items: center;
+}
+
+.hidden{
+    display: none;
 }

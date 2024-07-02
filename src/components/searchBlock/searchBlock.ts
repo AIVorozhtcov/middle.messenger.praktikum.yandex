@@ -8,7 +8,7 @@ const UserControllerInstance = new UserController();
 class SearchBlock extends Block {
 
 
-    constructor(props: Props) {
+    constructor(props: Props, clickFunction: Function) {
       super("div", props, SearchBlockTemplate);
       this.setProps({
         class: "search-blocksade"
@@ -30,7 +30,7 @@ class SearchBlock extends Block {
                         id: user.id,
                         login: user.login,
                         display_name: user.display_name
-                    }));
+                    }, clickFunction));
                     this.children.searchPopup.setProps({
                         popupChild: mappedUsers,
                         attrs:{

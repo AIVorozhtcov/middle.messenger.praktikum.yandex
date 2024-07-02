@@ -15,6 +15,9 @@ import Popup from "../../components/popup/popup";
 import Router from "../../utils/router";
 import UserController from "../../controllers/userController";
 import ChatsController from "../../controllers/chatsController";
+import { CreateChatInterface } from "../../api/chats/chats.types";
+import SearchResult from "../../components/searchResult/searchResult";
+import Chatbar from "../../components/chatbar/chatBar";
 
 
 const ChatsRouter = new Router('#app');
@@ -34,7 +37,7 @@ function mapChats(state: AppState) {
     return {
         sidebarChats: state.chats?.map(chat => new Chat({
             id: chat.chat_id,
-            chatName: chat.target_display_name,
+            chatName: chat.title,
             chatText: chat.last_message? chat.last_message.content : "Напишите первое сообщение",
             avatar: chat.avatar? chat.avatar : "/assets/empty_profile.png",
             unreadMessage: chat.unread_count,
@@ -59,6 +62,44 @@ function mapMessages(state: AppState) {
     }
 }
 
+const AddChatForm = new Form<CreateChatInterface>({
+    inputs: [new CardInputBlock({
+        inputChild: new Input({
+            attrs:{
+                type: "text",
+                id: "chat_name",
+                name: "title",
+                placeholder: "Введите название чата"
+            }
+        }),
+        inputTitle: "Название чата",}),
+        ],
+    submitText: "Создать",      
+}, ChatsControllerInstance.createChat);
+
+const AddChatPopup = new Popup({
+    popupChild: AddChatForm,
+})
+
+const AddChatButton = new Button({
+    childElement: new Img({
+        attrs:{
+            src: "/assets/plus_button.svg",
+            alt: "add chat",            
+            class: "add-chat-icon",
+        }
+    }),
+    attrs: {
+        class: "add-chat-button"
+    },
+    events:{
+        click: (_event: Event) => {
+            _event.preventDefault();
+            AddChatPopup.appear();
+        }
+    }
+});
+
 const SearchButton = new Button({
     childElement: new Img({
         attrs:{
@@ -76,12 +117,57 @@ const SearchPopup = new Popup({
 })
 
 
+function mapElementVisibility(state: AppState){
+    return {
+        attrs:{
+            style: state.currentChat? "" : "display: none"
+        }
+    }
+}
+
+const ConnectedButton = connect(Button, mapElementVisibility);
+
+const RemoveUsersButton = new ConnectedButton({
+    childElement: new Img({
+        attrs:{
+            src: "/assets/more_button.svg",
+            alt: "remove users",            
+            class: "remove-users-icon",
+        }
+    })
+});
+
+
+function mapChatbar(state: AppState) {
+    return {
+        chatAvatar: new Img({
+            attrs:{
+                src: state.currentChat?.avatar,
+                alt: "Chat avatar",
+                class: state.currentChat?.avatar? "profile-icon" : "hidden"
+            }
+        }),
+        chatName: state.currentChat?.name? state.currentChat.name : "",        
+        removeUsersPopup: new Popup({
+            popupChild: state.currentChatUsers?.map(user => new SearchResult({
+                id: user.id,
+                login: user.login,
+                display_name: user.display_name
+            }, ChatsControllerInstance.removeUserFromChat))
+        }, RemoveUsersButton)
+    }
+}
+
+
+const ConnectedChatBar = connect(Chatbar, mapChatbar)
+
+
 const SearchBar = new Input({
     attrs:{
         type: "text",
         id: "search_bar",
         name: "search_bar",
-        placeholder: "Создать чат с пользователем"
+        placeholder: "Добавить пользователя в чат"
     }
 })
 
@@ -120,15 +206,17 @@ const messageForm= new Form({
     
     }, () => {});
 
-const SearchSection = new SearchBlock({
+
+const ConnectedSearchBlock = connect(SearchBlock, mapElementVisibility); 
+
+const SearchSection = new ConnectedSearchBlock({
     searchButton: SearchButton,
     searchBar: SearchBar,
-    profileButton: ProfileButton,
     searchPopup: SearchPopup,
-    attrs:{
-        class: "search-section"
+    attrs: {
+      class: "search-section"
     }
-})
+  }, ChatsControllerInstance.addUserToChat);
 
 const ConnectedMessageBlock = connect(MessageBlock, mapMessages);
 
@@ -139,9 +227,19 @@ const messageSection = new ConnectedMessageBlock({
     }
 });
 
+
+const CurrentChatBar = new ConnectedChatBar({
+    searchSection: SearchSection,
+    removeUsersButton: RemoveUsersButton,
+    profileButton: ProfileButton
+})
+
+
 const ChatsData = {
     messageSection: messageSection,
-    searchSection: SearchSection
+    chatbar: CurrentChatBar,
+    addChatButton: AddChatButton,
+    addChatPopup: AddChatPopup
 };
 
 class Chats extends Block {

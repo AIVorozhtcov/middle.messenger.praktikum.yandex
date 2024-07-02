@@ -4,7 +4,16 @@ import PopupTemplate from "./popup.hbs?raw";
 class Popup extends Block {
     private popupOverlay: HTMLElement | null;
 
-    constructor(props: Props) {
+    public appear(){
+        this.setProps({
+            attrs:{
+                class: "popup-overlay show",
+            }
+        })
+        
+    }
+
+    constructor(props: Props, responsibleButton?: Block) {
           
         super("div", props, PopupTemplate);
         this.setProps({
@@ -13,6 +22,16 @@ class Popup extends Block {
                 class: "popup-overlay"
             }           
         });
+        if (responsibleButton){
+            responsibleButton.setProps({
+                events:{
+                    click: (_event: Event) => {
+                        _event.preventDefault();
+                        this.appear();
+                    }
+                }
+            })
+        }
         this.popupOverlay = document.getElementById('popup-overlay');
         this.setProps({
             events:{

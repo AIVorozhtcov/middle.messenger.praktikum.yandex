@@ -16,7 +16,7 @@ export type PropsWithChildren = {
 };
 
 export type BlockType = {
-  new(propsAndParent: Props): Block
+  new(propsAndParent: Props, ...args: any[]): Block;
 };
 
 
