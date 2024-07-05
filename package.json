@@ -12,7 +12,8 @@
     "eslint": "eslint .",
     "build": "eslint . &&tsc && vite build",
     "preview": "vite preview",
-    "start": "tsc && vite build &&  node ./server.js"
+    "start": "tsc && vite build &&  node ./server.js",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -30,13 +31,20 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@types/chai": "^4.3.16",
+    "@types/mocha": "^10.0.7",
     "@types/uuid": "^9.0.8",
     "@typescript-eslint/eslint-plugin": "^7.1.1",
+    "chai": "^5.1.1",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
+    "jsdom": "^24.1.0",
+    "mocha": "^10.6.0",
     "sass": "^1.69.5",
+    "sinon": "^18.0.0",
     "stylelint": "^16.2.1",
     "stylelint-config-standard-scss": "^13.0.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5.3.3",
     "vite": "^5.0.10",
     "vite-plugin-handlebars": "^1.6.0"
