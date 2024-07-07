@@ -6,3 +6,6 @@ const jsdom = new JSDOM('<body></body>', {
 
 global.window = jsdom.window;
 global.document = jsdom.window.document;
+global.XMLHttpRequest = jsdom.window.XMLHttpRequest;
+global.scroll = (number1, number2) => {};
+global.MouseEvent = jsdom.window.MouseEvent;
