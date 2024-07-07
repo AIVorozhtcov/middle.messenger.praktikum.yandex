@@ -16,11 +16,6 @@
     "start": "tsc && vite build &&  node ./server.js",
     "test": "mocha -r ts-node/register --config .mocharc.json"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run test && npm run lint"
-    }
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AIVorozhtcov/middle.messenger.praktikum.yandex.git"
