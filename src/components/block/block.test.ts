@@ -1,10 +1,11 @@
+/* eslint-disable max-classes-per-file */
 import { expect, use } from "chai";
 import sinonChai from "sinon-chai";
 import { createSandbox} from 'sinon';
 import { afterEach } from "mocha";
 import Block, {Props} from "./block";
 
-describe("Block", ()=>{
+describe("Block", () => {
     use(sinonChai)
     const sandbox = createSandbox();        
     let app: Element;
@@ -142,7 +143,7 @@ describe("Block", ()=>{
             text: testText2
         });
         const testParentBlock = new TestParentBlock({
-            child: [ testChildBlock1, testChildBlock2]
+            child: [testChildBlock1, testChildBlock2]
         })
         testParentBlock.mountElement('body');
         const parentInnerHtml = app.querySelector('#test-parent')?.innerHTML;
@@ -162,8 +163,6 @@ describe("Block", ()=>{
         const blockElement = app.querySelector('#test-parent');
         const elementClass = blockElement?.outerHTML
         return expect(elementClass).to.contain(testText)
-    });
+    });    
     
-    
-}
-)
+})

@@ -4,7 +4,7 @@ import HTTPTransport from "./fetch";
 import { createSandbox, SinonStub } from 'sinon';
 import { afterEach } from "mocha";
 
-describe("HTTP Transport", ()=>{
+describe("HTTP Transport", () => {
     use(sinonChai)
     const sandbox = createSandbox();
     let http: HTTPTransport;
@@ -70,6 +70,4 @@ describe("HTTP Transport", ()=>{
           });
       });
 
-
-}
-)
+})

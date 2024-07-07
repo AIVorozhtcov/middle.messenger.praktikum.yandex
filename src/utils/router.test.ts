@@ -1,3 +1,5 @@
+/* eslint-disable max-classes-per-file */
+/* eslint-disable no-unused-expressions */
 import { expect, use } from "chai";
 import sinonChai from "sinon-chai";
 import Router from "./router";
@@ -6,7 +8,7 @@ import { afterEach } from "mocha";
 import Block, {Props} from "../components/block/block";
 import Route from "./route";
 
-describe("Router", ()=>{
+describe("Router", () => {
     use(sinonChai)
     const sandbox = createSandbox();        
 
@@ -86,9 +88,6 @@ describe("Router", ()=>{
         testRouter.forward();   
         await clock.tickAsync(1);
         expect(window.location.pathname).to.contain('/page2')
-    });
-
+    });    
     
-    
-}
-)
+})
