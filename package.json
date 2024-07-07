@@ -14,7 +14,8 @@
     "build": "eslint . &&tsc && vite build",
     "preview": "vite preview",
     "start": "tsc && vite build &&  node ./server.js",
-    "test": "mocha -r ts-node/register --config .mocharc.json"
+    "test": "mocha -r ts-node/register --config .mocharc.json",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
