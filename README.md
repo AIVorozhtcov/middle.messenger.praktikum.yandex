@@ -24,6 +24,9 @@
 5. Сборка и запуск Express-сервера:
     ```sh
     npm run start
+6. Запуск тестов:
+    ```sh
+    npm run test
 
 ## Ссылки на Netlify
 
