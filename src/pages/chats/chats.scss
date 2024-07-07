@@ -1,1 +1,163 @@
-// Styles to be added
+
+@use "sass:color";
+@import "/styles/common";
+
+
+.chat-sidebar {
+    width: 25%;
+    background-color: $background-gray;
+    color: $black;
+    overflow-y: auto;
+    padding: 20px 0;
+    border-right: 1px solid $border-gray;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+
+.chat-sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+.chat-sidebar .chat-item {
+    padding: 10px 20px;
+    border-bottom: 1px solid $border-gray;
+    cursor: pointer;
+}
+
+.chat-sidebar .chat-item:hover {
+    background-color: color.adjust($background-gray, $lightness: -10%);
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    height: 100vh;
+    background-color: $background-gray;
+}
+
+.chat-avatar {
+    height: 24px;
+}
+
+.search-section {
+    padding: 10px;
+    border-bottom: 1px solid $border-gray;
+    display: flex;
+}
+
+.message-section-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.message-section {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: color.adjust($background-gray, $lightness: 5%);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.message-section::-webkit-scrollbar {
+    display: none;
+}
+
+.message-form-container {
+    padding: 10px;
+    background-color: color.adjust($background-gray, $lightness: 10%);
+    border-top: 1px solid $border-gray;
+}
+
+.message-container {
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    color: $black;
+    text-align: left;
+    word-wrap: break-word;
+    background-color: $blue;
+}
+
+.my-message {
+    background-color: $background-gray;
+    text-align: right;
+}
+
+.other-message {
+    background-color: $blue;
+    text-align: left;
+}
+
+.message-time {
+    font-size: 0.8em;
+    color: $gray;
+}
+
+.message-content {
+    margin-top: 5px;
+}
+
+.search-icon {
+    @include button-icon
+}
+
+.search-button {
+    border: none;
+    color: transparent;
+    background-color: transparent;
+}
+
+.search-block {
+    display: flex;
+}
+
+.profile-button {
+    border: none;
+    color: transparent;
+    background-color: transparent;
+    margin: auto;
+}
+
+.profile-icon {
+    @include button-icon
+}
+
+.chats-page {
+    display: flex;
+    height: 100vh;
+}
+
+.add-chat-icon{
+    @include button-icon
+}
+
+.add-chat-button{
+    border: none;
+    color: transparent;
+    background-color: transparent;
+}
+
+.remove-users-icon{
+    @include button-icon
+}
+
+.remove-users-button{
+    border: none;
+    color: transparent;
+    background-color: transparent;
+    margin-left: auto;
+}
+
+.chatbar{
+    display: flex;
+    align-items: center;
+}
+
+.hidden{
+    display: none;
+}

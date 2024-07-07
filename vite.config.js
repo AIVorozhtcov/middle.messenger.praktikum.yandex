@@ -4,6 +4,7 @@ import { resolve } from 'path';
 import getProperty from './src/handlebars-helpers';
 
 export default defineConfig({
+  root: resolve(__dirname, 'src/'),
   plugins: [handlebars({
     helpers: {
       getProperty,
@@ -65,17 +66,21 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        index: resolve(__dirname, 'index.html'),
+        index: resolve(__dirname, 'src/index.html'),
         login: resolve(__dirname, 'src/pages/login/login.html'),
         signup: resolve(__dirname, 'src/pages/signup/signup.html'),
         chats: resolve(__dirname, 'src/pages/chats/chats.html'),
         profile: resolve(__dirname, 'src/pages/profile/profile.html'),
         error404: resolve(__dirname, 'src/pages/errors/error404.html'),
-        error500: resolve(__dirname, 'src/pages/errors/error500.html'),
+        error500: resolve(__dirname, 'src/pages/errors/error500.html'),   
+      },
+      output: {
+        assetFileNames: 'assets/[name][extname]',
       },
     },
+    outDir: resolve(__dirname, 'src/dist'),
   },
   server: {
-    open: 'index.html',
+    open: '/chats', 
   },
 });

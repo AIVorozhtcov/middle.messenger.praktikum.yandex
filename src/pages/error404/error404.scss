@@ -1,4 +1,5 @@
-@import "/src/styles/common";
+@import "/styles/common";
+
 
 .error{
     margin-top: 280px;
@@ -22,13 +23,14 @@
     line-height: 20px;
 }
 
-.error-retreat{
+.error-retreat{    
+    cursor: pointer;
     margin-top: 69px;
     color: $blue;
     text-align: center;
-
+    
     @include regular-text;
-
+    
     font-size: 11px;
     line-height: 11px;
 }

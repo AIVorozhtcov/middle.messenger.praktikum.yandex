@@ -1,17 +1,9 @@
-<div class="sidebar">        
+<div class="chat-sidebar"> 
+    {{{props.addChatButton}}}
     {{{props.sidebarChats}}}
 </div>
-
-<div>
-    {{{props.messages}}}
-
-    {{{props.messageForm}}}
-            
-    
-
-
-            
-
-                
-        </div>
-    </div>
+<div class="chat-container">
+        {{{props.chatbar}}}   
+        {{{props.messageSection}}}
+</div>
+{{{props.addChatPopup}}}

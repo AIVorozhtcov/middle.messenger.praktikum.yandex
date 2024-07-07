@@ -15,6 +15,11 @@ export type PropsWithChildren = {
     [K in string | symbol]: unknown | Block;
 };
 
+export type BlockType = {
+  new(propsAndParent: Props, ...args: any[]): Block;
+};
+
+
 class Block {
   static EVENTS = {
     INIT: "init",
@@ -108,7 +113,7 @@ class Block {
     this.eventBus.emit(Block.EVENTS.FLOW_CDM);
   }
 
-  private _componentDidUpdate(oldProps: Props | Children, newProps: Props | Children): void {
+  private _componentDidUpdate(oldProps: Props | Children | Lists, newProps: Props | Children | Lists): void {
     if (this.componentDidUpdate(oldProps, newProps)){
         this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
     }
@@ -227,7 +232,12 @@ class Block {
             self.children[prop] = value;
             self.eventBus.emit(Block.EVENTS.FLOW_CDU, oldChildren, self.children);
             return true;
-          } else {
+          } else if (value instanceof Array){
+              const oldLists = { ...self.lists};
+              self.lists[prop] = value;
+              self.eventBus.emit(Block.EVENTS.FLOW_CDU, oldLists, self.lists);
+              return true;
+          }else {
             const oldProps = { ...target };
             target[prop] = value;
             self.eventBus.emit(Block.EVENTS.FLOW_CDU, oldProps, target);

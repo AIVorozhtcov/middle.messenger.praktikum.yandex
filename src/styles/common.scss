@@ -16,6 +16,7 @@ $background-gray: #FBFBFB;
     color: #FFF;
     margin-top: 159px;
     padding: 0;
+    cursor: pointer;
 }
 
 
@@ -37,6 +38,7 @@ $background-gray: #FBFBFB;
     font-weight: 500;
     line-height: 11px;
     margin-top: 14px;
+    cursor: pointer;
 }
 
 @mixin regular-text{
@@ -47,3 +49,41 @@ $background-gray: #FBFBFB;
     line-height: 13px;
 }
 
+@mixin button-icon {    
+    height: 28px; 
+    padding-left: 2px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: flex;
+}
+
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(0 0 0 / 50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s;
+}
+  
+.popup-overlay.show {
+  visibility: visible;
+  opacity: 1;
+}
+  
+.popup {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+  position: relative;
+}
+  

@@ -1,19 +1,18 @@
-import Block, {Props} from "../../components/block/block";
-import Page from "../../components/page/page";
+import Block from "../../components/block/block";
 import Card from "../../components/card/card";
 import CardInputBlock from "../../components/cardInputBlock/cardInputBlock";
 import Input from "../../components/input/input";
 import SignupTemplate from "./signup.hbs?raw";
 import Form from "../../components/form/form";
+import AuthController from "../../controllers/authController";
+import Hyperlink from "../../components/hyperlink/hyperlink";
+import UserController from "../../controllers/userController";
+import { UserRegistrationInterface } from "../../api/auth/auth.types";
+import Router from "../../utils/router";
 
-class Signup extends Block{
-    constructor(props: Props) {
-    super("div", props, SignupTemplate);
-    this.setProps({attrs:{
-        class: "card-canvas"
-      }});
-  }
-};
+const SignupRouter = new Router('#app');
+const UserControllerInstance = new UserController();
+const AuthInstance = new AuthController();
 
 const EmailInput = new CardInputBlock({
     inputChild: new Input({
@@ -96,11 +95,18 @@ const RepeatPasswordInput = new CardInputBlock({
 });
 
 
+const LoginHyperlink = new Hyperlink({    
+    destination: "/login",
+    hrefText: "Войти",    
+    attrs:{
+        class: "no-account"
+    },
+})
 
 
 
 const SignupCard = new Card({
-    form: new Form({
+    form: new Form<UserRegistrationInterface>({
         title:"Регистрация",
         inputs: [EmailInput, LoginInput, FirstNameInput, SecondNameInput, PhoneInput, PasswordInput, RepeatPasswordInput],
         submitClass: "signup-submit-button",
@@ -108,19 +114,34 @@ const SignupCard = new Card({
         attrs:{
             class: "signup-form"
         }
-    }),
-    hrefAddress: "/src/pages/login/login.html",
-    hrefText: "Войти"
+    }, AuthInstance.createUser),
+    hyperlink: LoginHyperlink
 });
 
-
-const SignupLayout = new Signup({
+const SignupData ={
     signupCard: SignupCard
-});
+};
 
 
-const SignupPage = new Page({
-    pageLayout: SignupLayout,
-});
+class Signup extends Block{
+    constructor() {
+    super("main", {}, SignupTemplate);
+    this._checkSignedIn();    
 
-SignupPage.mountElement("body");
+  }
+
+  private async _checkSignedIn(){
+    if (await UserControllerInstance.checkUserLoggedIn()){
+        SignupRouter.go('/messenger')
+    } else {
+        this.setProps({attrs:{
+            class: "card-canvas"
+          }});
+        this.setProps(SignupData);
+    }
+  }
+};
+
+
+
+export default Signup
