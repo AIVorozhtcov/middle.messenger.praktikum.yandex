@@ -1,4 +1,5 @@
-
+/* eslint-disable max-classes-per-file */
+/* eslint-disable no-unused-expressions */
 import { expect, use } from "chai";
 import sinonChai from "sinon-chai";
 import Router from "./router";
