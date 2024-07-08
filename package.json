@@ -10,7 +10,8 @@
   "scripts": {
     "dev": "vite",
     "eslint": "eslint .",
-    "lint": "eslint . &&tsc",
+    "stylelint": "stylelint \"**/*.scss\"",
+    "lint": "npm run eslint && npm run stylelint && tsc",
     "build": "eslint . &&tsc && vite build",
     "preview": "vite preview",
     "start": "tsc && vite build &&  node ./server.js",
